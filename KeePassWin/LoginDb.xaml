@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="KeePassWin.LoginDb"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KeePassWin"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel>
+            <TextBlock x:Name="labelLogin" Text="Opening :" Margin="10"/>
+            <TextBox x:Name="password" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="login here" Margin="5"  RelativePanel.Below="labelLogin"/>
+            <Button x:Name="orangeButton" Margin="5" Background="Orange" Content="Login" RelativePanel.Below="password" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="orangeButton_Click"/>
+        </RelativePanel>
+    </Grid>
+</Page>
