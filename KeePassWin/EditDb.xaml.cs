@@ -29,10 +29,12 @@ namespace KeePassWin
 
         private void orangeButton_Click(object sender, RoutedEventArgs e)
         {
+
+
             Db db = new Db();
 
             db.Title = title.Text;
-            db.Password = password.Text;
+            db.Password = password.Password;
             db.save();
 
             this.Frame.Navigate(typeof(MainPage), null);

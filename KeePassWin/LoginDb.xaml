@@ -10,8 +10,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
             <TextBlock x:Name="labelLogin" Text="Opening :" Margin="10"/>
-            <TextBox x:Name="password" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="login here" Margin="5"  RelativePanel.Below="labelLogin"/>
-            <Button x:Name="orangeButton" Margin="5" Background="Orange" Content="Login" RelativePanel.Below="password" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="orangeButton_Click"/>
+            <PasswordBox  x:Name="password" Width="200" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="write password here" Margin="5"  RelativePanel.Below="labelLogin"/>
+            <Button x:Name="orangeButton"  Width="200" Margin="5" Background="Orange" Content="Login" RelativePanel.Below="password" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="orangeButton_Click"/>
         </RelativePanel>
     </Grid>
 </Page>

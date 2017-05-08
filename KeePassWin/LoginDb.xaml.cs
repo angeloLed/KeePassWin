@@ -34,6 +34,7 @@ namespace KeePassWin
             base.OnNavigatedTo(e);
             Dictionary<string, string> parameters = (Dictionary<string, string>)e.Parameter;
 
+            labelLogin.Text = "Opening : " + parameters["filename"];
             this.bodyFile = await Storage.getContentFile(parameters["filename"]);
         }
 
@@ -42,7 +43,7 @@ namespace KeePassWin
             string decryptedBody = "";
 
             try {
-                decryptedBody = Crypto.Decrypt(this.bodyFile, password.Text);
+                decryptedBody = Crypto.Decrypt(this.bodyFile, password.Password);
             }
             catch(Exception ex) {
                 string messageError = "";

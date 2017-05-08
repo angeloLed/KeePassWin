@@ -10,10 +10,10 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <RelativePanel>
-            <TextBox x:Name="title" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="Type your notes here" Margin="5"/>
-            <TextBox x:Name="password" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="Type your notes here" RelativePanel.Below="title" Margin="5"/>
-            <TextBox x:Name="passwordRep" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="Type your notes here" RelativePanel.Below="password" Margin="5"/>
-            <Button x:Name="orangeButton" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="passwordRep" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="orangeButton_Click"/>
+            <TextBox x:Name="title" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
+            <PasswordBox x:Name="password" Width="200" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="" RelativePanel.Below="title" Margin="5"/>
+            <PasswordBox x:Name="passwordRep" Width="200" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="" RelativePanel.Below="password" Margin="5"/>
+            <Button x:Name="orangeButton" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="passwordRep" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="orangeButton_Click"/>
         </RelativePanel>
     </Grid>
 </Page>
