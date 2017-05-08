@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,12 +34,33 @@ namespace KeePassWin
             base.OnNavigatedTo(e);
             Dictionary<string, string> parameters = (Dictionary<string, string>)e.Parameter;
 
-            this.bodyFile = await Storage.getContentFile(parameters["fileName"]);
+            this.bodyFile = await Storage.getContentFile(parameters["filename"]);
         }
 
-        private void orangeButton_Click(object sender, RoutedEventArgs e)
+        private async void orangeButton_Click(object sender, RoutedEventArgs e)
         {
+            string decryptedBody = "";
 
+            try {
+                decryptedBody = Crypto.Decrypt(this.bodyFile, password.Text);
+            }
+            catch(Exception ex) {
+                string messageError = "";
+                if (ex.Message.Contains("Exception from HRESULT: 0x80070017")) {
+                    messageError = "Wrong Password";
+                }
+                else {
+                    messageError = "Error to login :" + ex.Message;
+                }
+                var dialog = new MessageDialog(messageError);
+                await dialog.ShowAsync();
+            }
+
+            if (!String.IsNullOrEmpty(decryptedBody)) {
+
+                Db db = Db.getFromJson(decryptedBody);
+                this.Frame.Navigate(typeof(MainPage), db);
+            }
         }
     }
 }

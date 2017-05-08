@@ -33,6 +33,7 @@ namespace KeePassWin
     public sealed partial class MainPage : Page
     {
         private List<Person> persons;
+        private Db db;
 
         public MainPage()
         {
@@ -41,6 +42,13 @@ namespace KeePassWin
             this.persons = new List<Person>();
             this.persons.Add(new Person { Name = "asd2", Age = 45 });
             this.persons.Add(new Person { Name = "asd3", Age = 47 });
+            
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            this.db = (Db)e.Parameter;
             
         }
 

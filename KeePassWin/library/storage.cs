@@ -14,9 +14,9 @@ namespace KeePassWin
 
         public static async void saveFile(string path, string content)
         {
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync(getRealName(path), Windows.Storage.CreationCollisionOption.FailIfExists);
-            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, content);
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile sampleFile = await storageFolder.CreateFileAsync(mergeExtension(path), CreationCollisionOption.FailIfExists);
+            await FileIO.WriteTextAsync(sampleFile, content);
         }
 
         public static async Task<IReadOnlyList<StorageFile>> getFiles()
@@ -29,22 +29,27 @@ namespace KeePassWin
         public static async Task<string> getContentFile( string name )
         {
             string body = "";
-            name = getRealName(name);
+            name = mergeExtension(name);
 
             IReadOnlyList<StorageFile> fileList = await getFiles();
             foreach (StorageFile file in fileList)
             {
                 if (file.Name == name) {
-                    body = await Windows.Storage.FileIO.ReadTextAsync(file);
+                    body = await FileIO.ReadTextAsync(file);
                 }
             }
 
             return body;
         }
 
-        private static string getRealName(string name)
+        private static string mergeExtension(string name)
         {
-            return name + "." + extension;
+            if (name.EndsWith(extension)) {
+                return name;
+            }
+            else {
+                return name + "." + extension;
+            }
         }
     }
 }

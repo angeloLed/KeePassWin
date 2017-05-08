@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -30,6 +31,9 @@ namespace KeePassWin
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            //string asd3 = Crypto.Encrypt("abcdef", "password");
+            //string asd4 = Crypto.Decrypt(asd3, "password");
+
             IReadOnlyList<StorageFile> files = await Storage.getFiles();
             if (files.Count() == 0)
             {

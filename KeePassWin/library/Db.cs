@@ -28,13 +28,19 @@ namespace KeePassWin
         public string Note { get; set; }
         public List<KeyGroup> Groups { get; set; }
 
-        public async void save()
+        public static Db getFromJson(string json)
         {
-            if (this.FileName == "") {
+            return JsonConvert.DeserializeObject<Db>(json);
+        }
+
+        public void save()
+        {
+            if (String.IsNullOrEmpty(this.FileName)) {
                 this.FileName = this.Title;
             }
 
-            Storage.saveFile(this.FileName, JsonConvert.SerializeObject(this));
+            string body = JsonConvert.SerializeObject(this);
+            Storage.saveFile(this.FileName, Crypto.Encrypt(body, this.Password));
         }
     }
 }

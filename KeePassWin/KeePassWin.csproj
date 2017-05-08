@@ -101,6 +101,7 @@
     <Compile Include="EditDb.xaml.cs">
       <DependentUpon>EditDb.xaml</DependentUpon>
     </Compile>
+    <Compile Include="library\Crypto.cs" />
     <Compile Include="library\Db.cs" />
     <Compile Include="library\KeyGroup.cs" />
     <Compile Include="library\Storage.cs" />
