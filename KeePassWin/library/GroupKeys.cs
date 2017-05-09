@@ -2,7 +2,7 @@
 
 namespace KeePassWin
 {
-    public class KeyGroup
+    public class GroupKeys
     {
         public List<Key> Keys { get; set; }
         public string Name { get; set; }

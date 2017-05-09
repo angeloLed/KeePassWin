@@ -26,7 +26,7 @@ namespace KeePassWin
         public string Title { get; set; }
         public string Password { get; set; }
         public string Note { get; set; }
-        public List<KeyGroup> Groups { get; set; }
+        public List<GroupKeys> Groups { get; set; }
 
         public static Db getFromJson(string json)
         {

@@ -22,6 +22,9 @@ namespace KeePassWin
     /// </summary>
     sealed partial class App : Application
     {
+      
+        public static Db currentDb { get; set; }
+
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato
         /// creato e, come tale, corrisponde all'equivalente logico di main() o WinMain().
@@ -66,7 +69,7 @@ namespace KeePassWin
                     // Quando lo stack di esplorazione non viene ripristinato, passare alla prima pagina
                     // e configurare la nuova pagina passando le informazioni richieste come parametro
                     // parametro
-                    rootFrame.Navigate(typeof(Home), e.Arguments);
+                    rootFrame.Navigate(typeof(BootPage), e.Arguments);
                 }
                 // Assicurarsi che la finestra corrente sia attiva
                 Window.Current.Activate();
