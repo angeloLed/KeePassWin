@@ -101,6 +101,9 @@
     <Compile Include="EditDb.xaml.cs">
       <DependentUpon>EditDb.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="library\Crypto.cs" />
     <Compile Include="library\Db.cs" />
     <Compile Include="library\KeyGroup.cs" />
@@ -140,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditDb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

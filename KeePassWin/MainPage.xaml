@@ -17,6 +17,7 @@
                 <TextBlock x:Name="deserialize" Margin="0 0 0 10" />
                 <Button x:Name="Convert" Content="Convert" Click="Convert_Click" />
 
+                
                 <GridView x:Name="gggrid" ItemsSource="{x:Bind persons}">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="data:Person">
