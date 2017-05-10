@@ -30,9 +30,13 @@ namespace KeePassWin
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
+            if (App.currentDb.Groups == null) {
+                App.currentDb.Groups = new List<GroupKeys>();
+            }
 
-            App.currentDb.Groups.Add(new GroupKeys { Name = name.Text });
-            this.Frame.Navigate(typeof(Home));
+            App.currentDb.Groups.Add(new GroupKeys { name = name.Text });
+            this.Frame.Navigate(typeof(ListGroups));
         }
+
     }
 }

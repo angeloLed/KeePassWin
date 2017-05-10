@@ -40,7 +40,7 @@ namespace KeePassWin
 
         private void buttonGroupes_Click(object sender, RoutedEventArgs e)
         {
-            this.navigateTo(typeof(GroupList));
+            this.navigateTo(typeof(ListGroups));
         }
 
         private void navigateTo(Type page)

@@ -104,8 +104,8 @@
     <Compile Include="EditGroup.xaml.cs">
       <DependentUpon>EditGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="listGroups.xaml.cs">
-      <DependentUpon>listGroups.xaml</DependentUpon>
+    <Compile Include="ListGroups.xaml.cs">
+      <DependentUpon>ListGroups.xaml</DependentUpon>
     </Compile>
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -114,6 +114,9 @@
     <Compile Include="library\Db.cs" />
     <Compile Include="library\GroupKeys.cs" />
     <Compile Include="library\Storage.cs" />
+    <Compile Include="ListKeys.xaml.cs">
+      <DependentUpon>ListKeys.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginDb.xaml.cs">
       <DependentUpon>LoginDb.xaml</DependentUpon>
     </Compile>
@@ -156,11 +159,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="listGroups.xaml">
+    <Page Include="ListGroups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListKeys.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="KeePassWin.EditGroup"
+    x:Class="KeePassWin.ListKeys"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:KeePassWin"
@@ -9,9 +9,6 @@
     xmlns:data="using:KeePassWin">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel x:Name="pane">
-            <TextBox x:Name="name" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
-            <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="name" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
-        </RelativePanel>
+
     </Grid>
 </Page>

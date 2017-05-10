@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="KeePassWin.GroupList"
+    x:Class="KeePassWin.ListGroups"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:KeePassWin"
@@ -7,24 +7,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     
-    xmlns:data="using:KeePassWin"
-    
-    >
+    xmlns:data="using:KeePassWin">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-
-                <GridView x:Name="gridElements" ItemsSource="{x:Bind db.Groups}">
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="data:GroupKeys">
-                            <TextBlock FontSize="12" Text="{x:Bind Name}"></TextBlock>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-                <Button x:Name="buttonNewGroup" Content="New Group" Click="buttonNewGroup_Click" />
-
+    <Page.Resources>
+        <DataTemplate x:Key="GroupItemTemplate" x:DataType="data:GroupKeys">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel Margin="20,20,0,0">
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind name}"></TextBlock>
+                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind description}"></TextBlock>
+                </StackPanel>
             </StackPanel>
-        </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,20,20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="1" x:Name="buttonNewGroup" Content="New Group" Click="buttonNewGroup_Click" />
+        <ListView x:Name="gridElements" 
+                  ItemsSource="{x:Bind db.Groups}"
+                  IsItemClickEnabled="True" 
+                ItemTemplate="{StaticResource GroupItemTemplate}">
+        </ListView>
     </Grid>
 </Page>
