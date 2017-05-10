@@ -7,8 +7,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:data="using:KeePassWin">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="GroupItemTemplate" x:DataType="data:Key">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel Margin="20,20,0,0">
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind title}"></TextBlock>
+                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind url}"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,20,20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
 
+        <Button Grid.Row="1" x:Name="buttonNewKey" Content="New Key" Click="buttonNewKey_Click" />
+        <ListView x:Name="gridElements" 
+                  ItemsSource="{x:Bind keys}"
+                  IsItemClickEnabled="True" 
+                ItemTemplate="{StaticResource GroupItemTemplate}" ItemClick="gridElements_ItemClick" >
+        </ListView>
     </Grid>
 </Page>

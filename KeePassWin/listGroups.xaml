@@ -30,7 +30,7 @@
         <ListView x:Name="gridElements" 
                   ItemsSource="{x:Bind db.Groups}"
                   IsItemClickEnabled="True" 
-                ItemTemplate="{StaticResource GroupItemTemplate}">
+                ItemTemplate="{StaticResource GroupItemTemplate}" ItemClick="gridElements_ItemClick">
         </ListView>
     </Grid>
 </Page>

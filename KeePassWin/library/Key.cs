@@ -2,11 +2,11 @@
 {
     public class Key
     {
-        public string Icon { get; set; }
-        public string Title { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Url { get; set; }
-        public string Note { get; set; }
+        public string icon { get; set; }
+        public string title { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string url { get; set; }
+        public string note { get; set; }
     }
 }

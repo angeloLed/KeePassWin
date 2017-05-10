@@ -43,9 +43,7 @@ namespace KeePassWin
             {
                 //to login db
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
-
                 parameters["filename"] = files[0].Name;
-
                 this.Frame.Navigate(typeof(LoginDb), parameters);
             }
             else {

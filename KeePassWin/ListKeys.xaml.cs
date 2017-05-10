@@ -22,7 +22,7 @@ namespace KeePassWin
     /// </summary>
     public sealed partial class ListKeys : Page
     {
-        public Db db;
+        public List<Key> keys;
         public ListKeys()
         {
             this.InitializeComponent();
@@ -31,7 +31,17 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.db = App.currentDb;
+            this.keys = (List<Key>)e.Parameter;
+        }
+
+        private void buttonNewKey_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void gridElements_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }
