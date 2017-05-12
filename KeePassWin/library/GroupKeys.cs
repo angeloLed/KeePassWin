@@ -4,9 +4,10 @@ namespace KeePassWin
 {
     public class GroupKeys
     {
-        public List<Key> keys { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string Note { get; set; }
+
+        internal List<Key> keys { get; set; }
+        internal string name { get; set; }
+        internal string description { get; set; }
+        internal string Note { get; set; }
     }
 }

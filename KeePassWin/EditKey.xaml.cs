@@ -20,10 +20,11 @@ namespace KeePassWin
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ListKeys : Page
+    public sealed partial class EditKey : Page
     {
-        public List<Key> keys;
-        public ListKeys()
+        private Key key = null;
+        private List<Key> keys = null;
+        public EditKey()
         {
             this.InitializeComponent();
         }
@@ -31,18 +32,30 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.keys = (List<Key>)e.Parameter;
+
+            if (e.Parameter.GetType() == typeof(Key)) {
+                this.key = (Key)e.Parameter;
+            } else if (e.Parameter.GetType() == typeof(List<Key>)) {
+                this.keys = (List<Key>)e.Parameter;
+            }
         }
 
-        private void buttonNewKey_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(EditKey), keys);
-        }
 
-        private void gridElements_ItemClick(object sender, ItemClickEventArgs e)
+
+        private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            Key key = (Key)e.ClickedItem;
-            this.Frame.Navigate(typeof(EditKey), key);
+            if (key != null)
+            {
+                key.title = title.Text;
+            }
+            else {
+                this.key = new Key();
+                this.key.title = title.Text;
+            }
+
+            this.keys.Add(this.key);
+
+            this.Frame.Navigate(typeof(ListKeys), this.keys);
         }
     }
 }

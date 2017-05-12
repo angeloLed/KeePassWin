@@ -104,6 +104,9 @@
     <Compile Include="EditGroup.xaml.cs">
       <DependentUpon>EditGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditKey.xaml.cs">
+      <DependentUpon>EditKey.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListGroups.xaml.cs">
       <DependentUpon>ListGroups.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditKey.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

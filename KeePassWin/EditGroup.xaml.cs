@@ -34,7 +34,7 @@ namespace KeePassWin
                 App.currentDb.Groups = new List<GroupKeys>();
             }
 
-            App.currentDb.Groups.Add(new GroupKeys { name = name.Text });
+            App.currentDb.Groups.Add(new GroupKeys { name = name.Text, keys = new List<Key>()  });
             this.Frame.Navigate(typeof(ListGroups));
         }
 
