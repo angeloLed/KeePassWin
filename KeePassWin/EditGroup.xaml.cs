@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,19 +24,37 @@ namespace KeePassWin
     /// </summary>
     public sealed partial class EditGroup : Page
     {
+        GroupKeys gk;
+
         public EditGroup()
         {
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            this.gk = (GroupKeys)e.Parameter;
+
+            if (gk != null) {
+                name.Text = gk.name;
+            }
+        }
+
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             if (App.currentDb.Groups == null) {
-                App.currentDb.Groups = new List<GroupKeys>();
+                App.currentDb.Groups = new ObservableCollection<GroupKeys>();
             }
 
-            App.currentDb.Groups.Add(new GroupKeys { name = name.Text, keys = new List<Key>()  });
-            this.Frame.Navigate(typeof(ListGroups));
+            if (this.gk == null) {
+                App.currentDb.Groups.Add(new GroupKeys { name = name.Text, keys = new ObservableCollection<Key>() });
+            }
+            else {
+                gk.name = name.Text;
+            }
+           
+            this.Frame.GoBack();
         }
 
     }

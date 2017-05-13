@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +24,8 @@ namespace KeePassWin
     public sealed partial class ListGroups : Page
     {
         public Db db;
+        public GroupKeys selectedGroup;
+        MessageDialog deletedialog;
         public ListGroups()
         {
             this.InitializeComponent();
@@ -32,11 +35,39 @@ namespace KeePassWin
         {
             base.OnNavigatedTo(e);
             this.db = App.currentDb;
+            
+            //inizialize dialog
+            deletedialog = new Windows.UI.Popups.MessageDialog(
+                "You are sure to remove the selected group?",
+                "You are sure?"
+            );
+
+            deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("Yes") { Id = 0 });
+            deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("No") { Id = 1 });
+
+            /*if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily != "Windows.Mobile")
+            {
+                deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("Maybe later") { Id = 2 });
+            }*/
+
+            deletedialog.DefaultCommandIndex = 0;
+            deletedialog.CancelCommandIndex = 1;
         }
 
         private void buttonNewGroup_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(EditGroup));
+        }
+        private void EditGroup_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(EditGroup), this.selectedGroup);
+        }
+        private async void DeleteGroup_Click(object sender, RoutedEventArgs e)
+        {
+            var result = await this.deletedialog.ShowAsync();
+            if (result.Id.ToString() == "0") {
+                this.db.Groups.Remove(this.selectedGroup);
+            }
         }
 
         private void gridElements_ItemClick(object sender, ItemClickEventArgs e)
@@ -44,6 +75,22 @@ namespace KeePassWin
             GroupKeys gk = (GroupKeys)e.ClickedItem;
             this.Frame.Navigate(typeof(ListKeys), gk.keys);
 
+        }
+
+        private void gridElements_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            FrameworkElement senderElement = sender as FrameworkElement;
+            this.selectedGroup = senderElement.DataContext as GroupKeys;
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            flyoutBase.ShowAt(senderElement);
+        }
+
+        private void gridElements_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            FrameworkElement senderElement = sender as FrameworkElement;
+            this.selectedGroup = senderElement.DataContext as GroupKeys;
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            flyoutBase.ShowAt(senderElement);
         }
     }
 }

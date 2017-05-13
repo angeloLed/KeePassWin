@@ -25,17 +25,21 @@ namespace KeePassWin
         public Home()
         {
             this.InitializeComponent();
-            this.MySplitView.Content = new Frame();
+            this.splitView.Content = new Frame();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            App.currentDb.Groups.CollectionChanged += (sender, ev) =>
+            {
+
+            };
         }
 
         private void buttonSpitter_Click(object sender, RoutedEventArgs e)
         {
-            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+            splitView.IsPaneOpen = !splitView.IsPaneOpen;
         }
 
         private void buttonGroupes_Click(object sender, RoutedEventArgs e)
@@ -45,9 +49,9 @@ namespace KeePassWin
 
         private void navigateTo(Type page)
         {
-            MySplitView.IsPaneOpen = false;
-            if (MySplitView.Content != null) {
-                ((Frame)MySplitView.Content).Navigate(page);
+            splitView.IsPaneOpen = false;
+            if (splitView.Content != null) {
+                ((Frame)splitView.Content).Navigate(page);
             }
 
             /*var frame = this.Frame;

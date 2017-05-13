@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,7 +24,7 @@ namespace KeePassWin
     public sealed partial class EditKey : Page
     {
         private Key key = null;
-        private List<Key> keys = null;
+        private ObservableCollection<Key> keys = null;
         public EditKey()
         {
             this.InitializeComponent();
@@ -35,12 +36,13 @@ namespace KeePassWin
 
             if (e.Parameter.GetType() == typeof(Key)) {
                 this.key = (Key)e.Parameter;
-            } else if (e.Parameter.GetType() == typeof(List<Key>)) {
-                this.keys = (List<Key>)e.Parameter;
+
+                title.Text = key.title;
+
+            } else if (e.Parameter.GetType() == typeof(ObservableCollection<Key>)) {
+                this.keys = (ObservableCollection<Key>)e.Parameter;
             }
         }
-
-
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
@@ -51,11 +53,10 @@ namespace KeePassWin
             else {
                 this.key = new Key();
                 this.key.title = title.Text;
+                this.keys.Add(this.key);
             }
 
-            this.keys.Add(this.key);
-
-            this.Frame.Navigate(typeof(ListKeys), this.keys);
+            this.Frame.GoBack();
         }
     }
 }

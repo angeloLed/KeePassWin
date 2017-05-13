@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
+    <SplitView x:Name="splitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
 
         <SplitView.Pane>
 
@@ -37,8 +37,7 @@
         <SplitView.Content>
 
             <Grid>
-                <TextBlock Text="SplitView Basic" FontSize="54" Foreground="White"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="SplitView Basic" FontSize="54" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </SplitView.Content>
 

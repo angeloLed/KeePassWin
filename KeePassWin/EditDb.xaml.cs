@@ -33,6 +33,7 @@ namespace KeePassWin
 
             db.Title = title.Text;
             db.Password = password.Password;
+            db.Groups = new System.Collections.ObjectModel.ObservableCollection<GroupKeys>();
             db.save();
 
             this.Frame.Navigate(typeof(Home), db);

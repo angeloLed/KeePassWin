@@ -10,7 +10,15 @@
     
     <Page.Resources>
         <DataTemplate x:Key="GroupItemTemplate" x:DataType="data:Key">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel  Holding="gridElements_Holding" RightTapped="gridElements_RightTapped" Orientation="Horizontal" HorizontalAlignment="Left">
+
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Click="EditKey_Click" x:Name="EditButton" Text="Edit"/>
+                        <MenuFlyoutItem Click="DeleteKey_Click" x:Name="DeleteButton" Text="Delete"/>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+
                 <StackPanel Margin="20,20,0,0">
                     <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind title}"></TextBlock>
                     <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind url}"></TextBlock>
