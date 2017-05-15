@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace KeePassWin
 {
@@ -13,14 +14,30 @@ namespace KeePassWin
         #region Properties
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [DataMember]
         public string FileName { get; set; }
+        [DataMember]
         public string Icon { get; set; }
+        [DataMember]
         public string Title { get; set; }
+        [DataMember]
         public string Password { get; set; }
+        [DataMember]
         public string Note { get; set; }
-
-        [JsonProperty("groups")]
-        public ObservableCollection<GroupKeys> Groups { get; set; }
+        
+        private ObservableCollection<GroupKeys> groups { get; set; }
+        [DataMember]
+        public ObservableCollection<GroupKeys> Groups
+        {
+            get
+            {
+                return groups;
+            }
+            set
+            {
+                groups = value;
+            }
+        }
 
         #endregion
 
@@ -31,6 +48,7 @@ namespace KeePassWin
                 this.Groups = new ObservableCollection<GroupKeys>();
             }
             
+            //init event handler
             this.Groups.CollectionChanged += GK_CollectionChanged;
         }
 
@@ -63,7 +81,7 @@ namespace KeePassWin
                 handler(this, new PropertyChangedEventArgs(e.PropertyName));
             }
         }
-#endregion
+        #endregion
 
         public static Db getFromJson(string json)
         {

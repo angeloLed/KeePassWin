@@ -37,22 +37,27 @@ namespace KeePassWin
             if (e.Parameter.GetType() == typeof(Key)) {
                 this.key = (Key)e.Parameter;
 
-                title.Text = key.title;
+                title.Text = key.Title ?? "";
+                note.Text = key.Note ?? "";
+                password.Password = key.Password ?? "";
+                url.Text = key.Url ?? "";
+                username.Text = key.Username ?? "";
 
             } else if (e.Parameter.GetType() == typeof(ObservableCollection<Key>)) {
+                this.key = new Key();
                 this.keys = (ObservableCollection<Key>)e.Parameter;
             }
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (key != null)
-            {
-                key.title = title.Text;
-            }
-            else {
-                this.key = new Key();
-                this.key.title = title.Text;
+            key.Title = title.Text;
+            key.Note = note.Text;
+            key.Password = password.Password;
+            key.Url = url.Text;
+            key.Username = username.Text;
+
+            if (this.keys != null) {
                 this.keys.Add(this.key);
             }
 
