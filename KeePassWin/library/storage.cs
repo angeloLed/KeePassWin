@@ -15,7 +15,7 @@ namespace KeePassWin
         public static async void saveFile(string path, string content)
         {
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile sampleFile = await storageFolder.CreateFileAsync(mergeExtension(path), CreationCollisionOption.FailIfExists);
+            StorageFile sampleFile = await storageFolder.CreateFileAsync(mergeExtension(path), CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(sampleFile, content);
         }
 

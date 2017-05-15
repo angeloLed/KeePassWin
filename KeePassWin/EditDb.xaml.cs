@@ -36,6 +36,7 @@ namespace KeePassWin
             db.Groups = new System.Collections.ObjectModel.ObservableCollection<GroupKeys>();
             db.save();
 
+            App.currentDb = db;
             this.Frame.Navigate(typeof(Home), db);
         }
     }

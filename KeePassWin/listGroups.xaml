@@ -19,8 +19,8 @@
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <StackPanel Margin="20,20,0,0">
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind name}"></TextBlock>
-                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind description}"></TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind Name}"></TextBlock>
+                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Description}"></TextBlock>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>

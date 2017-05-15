@@ -31,7 +31,8 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            App.currentDb.Groups.CollectionChanged += (sender, ev) =>
+           
+            App.currentDb.PropertyChanged += (sender, ev) =>
             {
 
             };
@@ -60,6 +61,11 @@ namespace KeePassWin
             {
                 frame.Navigate(typeof(EditGroup));
             }*/
+        }
+
+        private void buttonDbSave_Click(object sender, RoutedEventArgs e)
+        {
+            App.currentDb.save();
         }
     }
 }

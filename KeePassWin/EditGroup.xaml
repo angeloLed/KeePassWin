@@ -10,8 +10,10 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel x:Name="pane">
-            <TextBox x:Name="name" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
-            <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="name" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
+            <TextBox x:Name="name" Width="200" HorizontalContentAlignment="Stretch" Header="Name" PlaceholderText="" Margin="5"/>
+            <TextBox x:Name="desc" Width="200" HorizontalContentAlignment="Stretch" Header="Description" PlaceholderText="" Margin="5" RelativePanel.Below="name"/>
+            <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" PlaceholderText="" Margin="5" RelativePanel.Below="desc"/>
+            <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="note" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
         </RelativePanel>
     </Grid>
 </Page>

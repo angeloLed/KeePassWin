@@ -37,7 +37,9 @@ namespace KeePassWin
             this.gk = (GroupKeys)e.Parameter;
 
             if (gk != null) {
-                name.Text = gk.name;
+                name.Text = gk.Name;
+                desc.Text = gk.Description;
+                note.Text = gk.Note;
             }
         }
 
@@ -48,10 +50,19 @@ namespace KeePassWin
             }
 
             if (this.gk == null) {
-                App.currentDb.Groups.Add(new GroupKeys { name = name.Text, keys = new ObservableCollection<Key>() });
+                //update
+                App.currentDb.Groups.Add(new GroupKeys {
+                    Name = name.Text,
+                    Keys = new ObservableCollection<Key>(),
+                    Description = desc.Text,
+                    Note = note.Text
+                });
             }
             else {
-                gk.name = name.Text;
+                //new
+                gk.Name = name.Text;
+                gk.Description = desc.Text;
+                gk.Note = note.Text;
             }
            
             this.Frame.GoBack();

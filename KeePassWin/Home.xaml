@@ -22,7 +22,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="buttonDbSave" FontFamily="Segoe MDL2 Assets" Content="&#xE105;"
-                        Width="50" Height="50" Background="Transparent"/>
+                        Width="50" Height="50" Background="Transparent" Click="buttonDbSave_Click"/>
                     <TextBlock Text="Save DB" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
 

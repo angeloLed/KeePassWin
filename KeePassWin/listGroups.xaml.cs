@@ -73,7 +73,7 @@ namespace KeePassWin
         private void gridElements_ItemClick(object sender, ItemClickEventArgs e)
         {
             GroupKeys gk = (GroupKeys)e.ClickedItem;
-            this.Frame.Navigate(typeof(ListKeys), gk.keys);
+            this.Frame.Navigate(typeof(ListKeys), gk.Keys);
 
         }
 
