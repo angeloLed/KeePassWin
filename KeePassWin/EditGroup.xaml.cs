@@ -68,5 +68,13 @@ namespace KeePassWin
             this.Frame.GoBack();
         }
 
+        private async void icon_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialogs.IconsGrid dialog = new KeePassWin.ContentDialogs.IconsGrid();
+            await dialog.ShowAsync();
+
+            // Use the returned custom result
+            string result = dialog.Icon;
+        }
     }
 }

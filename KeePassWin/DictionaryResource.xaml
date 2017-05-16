@@ -1,0 +1,16 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KeePassWin">
+
+
+    <Flyout Placement="Full"  x:Name="iconSetResource" x:Key="iconSetResource">
+        <StackPanel>
+            <Button Content="Nom"/>
+            <Button Content="Categorie" />
+            <Button Content="Ville" />
+            <Button Content="Editeur" />
+        </StackPanel>
+    </Flyout>
+
+</ResourceDictionary>

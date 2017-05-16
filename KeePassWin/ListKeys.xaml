@@ -20,8 +20,8 @@
                 </FlyoutBase.AttachedFlyout>
 
                 <StackPanel Margin="20,20,0,0">
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind title}"></TextBlock>
-                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind url}"></TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind Title}"></TextBlock>
+                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Url}"></TextBlock>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
