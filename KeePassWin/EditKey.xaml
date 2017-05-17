@@ -8,14 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel x:Name="pane">
-            <TextBox x:Name="title" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
-            <TextBox x:Name="username" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="title" Header="Username" PlaceholderText="" Margin="5"/>
-            <PasswordBox x:Name="password" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="username" Header="Password" PlaceholderText="" Margin="5"/>
-            <PasswordBox x:Name="passwordR" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="password" Header="Repeate" PlaceholderText="" Margin="5"/>
-            <TextBox x:Name="url" Width="200" HorizontalContentAlignment="Stretch" Header="Url" RelativePanel.Below="passwordR" PlaceholderText="" Margin="5"/>
-            <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" RelativePanel.Below="url" PlaceholderText="" Margin="5"/>
-            <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="note" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
-        </RelativePanel>
+        <ScrollViewer>
+            <RelativePanel x:Name="pane">
+                <TextBox x:Name="title" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
+                <TextBox x:Name="username" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="title" Header="Username" PlaceholderText="" Margin="5"/>
+                <PasswordBox x:Name="password" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="username" Header="Password" PlaceholderText="" Margin="5"/>
+                <PasswordBox x:Name="passwordR" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="password" Header="Repeate" PlaceholderText="" Margin="5"/>
+                <TextBox x:Name="url" Width="200" HorizontalContentAlignment="Stretch" Header="Url" RelativePanel.Below="passwordR" PlaceholderText="" Margin="5"/>
+                <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" RelativePanel.Below="url" PlaceholderText="" Margin="5"/>
+                <Button x:Name="iconSelect" HorizontalContentAlignment="Stretch" RelativePanel.Below="note" Margin="5" Content="Select Icon" Click="icon_Click"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" x:Name="previewIcon" RelativePanel.RightOf="iconSelect" Margin="5" RelativePanel.AlignVerticalCenterWith="iconSelect" Text="&#xE192;" />
+                <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="iconSelect" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
+            </RelativePanel>
+        </ScrollViewer>
+      
     </Grid>
 </Page>

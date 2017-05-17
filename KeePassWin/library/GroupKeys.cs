@@ -54,6 +54,19 @@ namespace KeePassWin
             }
         }
 
+        // icon
+        private string icon;
+        [DataMember]
+        public string Icon
+        {
+            get { return icon; }
+            set
+            {
+                icon = value;
+                OnPropertyChanged("icon");
+            }
+        }
+
         //note
         private string note { get; set; }
         [DataMember]

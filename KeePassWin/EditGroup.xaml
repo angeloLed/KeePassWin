@@ -17,14 +17,16 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <RelativePanel x:Name="pane">
+                <TextBox x:Name="name" Width="200" HorizontalContentAlignment="Stretch" Header="Name" PlaceholderText="" Margin="5"/>
+                <TextBox x:Name="desc" Width="200" HorizontalContentAlignment="Stretch" Header="Description" PlaceholderText="" Margin="5" RelativePanel.Below="name"/>
+                <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" PlaceholderText="" Margin="5" RelativePanel.Below="desc"/>
+                <Button x:Name="iconSelect" HorizontalContentAlignment="Stretch" RelativePanel.Below="note" Margin="5" Content="Select Icon" Click="icon_Click"/>
+                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" x:Name="previewIcon" RelativePanel.RightOf="iconSelect" Margin="5" RelativePanel.AlignVerticalCenterWith="iconSelect" Text="&#xEC26;"/>
+                <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="iconSelect" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
+            </RelativePanel>
+        </ScrollViewer>
         
-        <RelativePanel x:Name="pane">
-            
-            <TextBox x:Name="name" Width="200" HorizontalContentAlignment="Stretch" Header="Name" PlaceholderText="" Margin="5"/>
-            <TextBox x:Name="desc" Width="200" HorizontalContentAlignment="Stretch" Header="Description" PlaceholderText="" Margin="5" RelativePanel.Below="name"/>
-            <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" PlaceholderText="" Margin="5" RelativePanel.Below="desc"/>
-            <Button x:Name="icon" HorizontalContentAlignment="Stretch" RelativePanel.Below="note" Margin="5" Content="Select Icon" Click="icon_Click"></Button>
-            <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="icon" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
-        </RelativePanel>
     </Grid>
 </Page>

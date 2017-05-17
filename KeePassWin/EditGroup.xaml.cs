@@ -26,6 +26,8 @@ namespace KeePassWin
     {
         GroupKeys gk;
 
+
+
         public EditGroup()
         {
             this.InitializeComponent();
@@ -37,9 +39,10 @@ namespace KeePassWin
             this.gk = (GroupKeys)e.Parameter;
 
             if (gk != null) {
-                name.Text = gk.Name;
-                desc.Text = gk.Description;
-                note.Text = gk.Note;
+                previewIcon.Text = gk.Icon ?? "";
+                name.Text = gk.Name ?? "";
+                desc.Text = gk.Description ?? "";
+                note.Text = gk.Note ?? "";
             }
         }
 
@@ -50,8 +53,10 @@ namespace KeePassWin
             }
 
             if (this.gk == null) {
+
                 //update
                 App.currentDb.Groups.Add(new GroupKeys {
+                    Icon = previewIcon.Text,
                     Name = name.Text,
                     Keys = new ObservableCollection<Key>(),
                     Description = desc.Text,
@@ -60,6 +65,7 @@ namespace KeePassWin
             }
             else {
                 //new
+                gk.Icon = previewIcon.Text;
                 gk.Name = name.Text;
                 gk.Description = desc.Text;
                 gk.Note = note.Text;
@@ -72,9 +78,7 @@ namespace KeePassWin
         {
             ContentDialogs.IconsGrid dialog = new KeePassWin.ContentDialogs.IconsGrid();
             await dialog.ShowAsync();
-
-            // Use the returned custom result
-            string result = dialog.Icon;
+            previewIcon.Text = dialog.SelectedEmoji.GetIcon();
         }
     }
 }

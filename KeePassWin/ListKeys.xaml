@@ -19,9 +19,12 @@
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
 
-                <StackPanel Margin="20,20,0,0">
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind Title}"></TextBlock>
-                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Url}"></TextBlock>
+                <StackPanel Margin="5,5,5,5">
+                    <RelativePanel>
+                        <TextBlock MinWidth="30" Name="icon" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Icon}" FontFamily="Segoe MDL2 Assets" Foreground="Gray"></TextBlock>
+                        <TextBlock Name="title" RelativePanel.RightOf="icon" FontSize="16" HorizontalAlignment="Left" Text="{x:Bind Title}" ></TextBlock>
+                        <TextBlock RelativePanel.RightOf="icon" RelativePanel.Below="title" FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Url}"></TextBlock>
+                    </RelativePanel>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
@@ -33,7 +36,7 @@
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="1" x:Name="buttonNewKey" Content="New Key" Click="buttonNewKey_Click" />
+        <Button Margin="5,5,5,5" Background="Orange" Grid.Row="1" x:Name="buttonNewKey" Content="New Key" Click="buttonNewKey_Click" />
         <ListView x:Name="gridElements" 
                   ItemsSource="{x:Bind keys}"
                   IsItemClickEnabled="True" 

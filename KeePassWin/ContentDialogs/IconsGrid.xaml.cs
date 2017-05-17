@@ -19,7 +19,7 @@ namespace KeePassWin.ContentDialogs
 {
     public sealed partial class IconsGrid : ContentDialog
     {
-        public string Icon;
+        public Emoji SelectedEmoji;
         private List<Emoji> iconSet = new List<Emoji>();
         public IconsGrid()
         {
@@ -28,7 +28,7 @@ namespace KeePassWin.ContentDialogs
 
             int i = 57345;
             for (int x = i; x < i+100; x++) {
-                iconSet.Add(new Emoji{ Text = Char.ConvertFromUtf32(x)});
+                iconSet.Add(new Emoji(x));
             }
 
             this.GridViewIcons.ItemsSource = iconSet;
@@ -38,7 +38,7 @@ namespace KeePassWin.ContentDialogs
         private void MyGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var gridView = sender as GridView;
-            string asd = iconSet[gridView.SelectedIndex].Text;
+            this.SelectedEmoji = iconSet[gridView.SelectedIndex];
             
             this.Hide();
         }

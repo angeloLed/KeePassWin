@@ -7,40 +7,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <SplitView x:Name="splitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel  Height="35" Background="Orange" Orientation="Horizontal">
+            <Button x:Name="buttonSpitter1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="35" Grid.Row="0" Background="Transparent"  Click="buttonSpitter_Click" />
+            <Border BorderBrush="{x:Null}" Height="35">
+                <TextBlock x:Name="HeadTitlePage" Foreground="Black"  TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Text="Menu" FontSize="22" />
+            </Border>
+        </StackPanel>
 
-        <SplitView.Pane>
+        <SplitView Grid.Row="1" x:Name="splitView" DisplayMode="Overlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
 
-            <StackPanel Background="Gray">
+            <SplitView.Pane>
+                <StackPanel Background="Orange">
+                    
+                    <!--<Button x:Name="buttonSpitter" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="buttonSpitter_Click"/>-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="buttonGroupes" FontFamily="Segoe MDL2 Assets" Content="&#xEC26;" Width="50" Height="50" Background="Transparent" Click="buttonGroupes_Click"/>
+                        <TextBlock Text="Groupes" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
 
-                <Button x:Name="buttonSpitter" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="buttonSpitter_Click"/>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="buttonGroupes" FontFamily="Segoe MDL2 Assets" Content="&#xEC26;" Width="50" Height="50" Background="Transparent" Click="buttonGroupes_Click"/>
-                    <TextBlock Text="Groupes" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="buttonDbSave" FontFamily="Segoe MDL2 Assets" Content="&#xE105;"
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="buttonDbSave" FontFamily="Segoe MDL2 Assets" Content="&#xE105;"
                         Width="50" Height="50" Background="Transparent" Click="buttonDbSave_Click"/>
-                    <TextBlock Text="Save DB" FontSize="18" VerticalAlignment="Center" />
+                        <TextBlock Text="Save DB" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="buttomDbList" FontFamily="Segoe MDL2 Assets" Content="&#xED41;" Width="50" Height="50" Background="Transparent"/>
+                        <TextBlock Text="List DB" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
                 </StackPanel>
+            </SplitView.Pane>
 
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="buttomDbList" FontFamily="Segoe MDL2 Assets" Content="&#xED41;" Width="50" Height="50" Background="Transparent"/>
-                    <TextBlock Text="List DB" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
+            <SplitView.Content>
+                <Grid>
+                    <TextBlock Text="SplitView Basic" FontSize="54" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </SplitView.Content>
 
-            </StackPanel>
+        </SplitView>
 
-        </SplitView.Pane>
-        <SplitView.Content>
-
-            <Grid>
-                <TextBlock Text="SplitView Basic" FontSize="54" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Grid>
-        </SplitView.Content>
-
-    </SplitView>
-
+    </Grid>
 </Page>

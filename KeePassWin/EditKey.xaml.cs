@@ -37,6 +37,7 @@ namespace KeePassWin
             if (e.Parameter.GetType() == typeof(Key)) {
                 this.key = (Key)e.Parameter;
 
+                previewIcon.Text = key.Icon ?? "&#xE192;";
                 title.Text = key.Title ?? "";
                 note.Text = key.Note ?? "";
                 password.Password = key.Password ?? "";
@@ -46,6 +47,7 @@ namespace KeePassWin
             } else if (e.Parameter.GetType() == typeof(ObservableCollection<Key>)) {
                 this.key = new Key();
                 this.keys = (ObservableCollection<Key>)e.Parameter;
+
             }
         }
 
@@ -56,12 +58,20 @@ namespace KeePassWin
             key.Password = password.Password;
             key.Url = url.Text;
             key.Username = username.Text;
+            key.Icon = previewIcon.Text;
 
             if (this.keys != null) {
                 this.keys.Add(this.key);
             }
 
             this.Frame.GoBack();
+        }
+
+        private async void icon_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialogs.IconsGrid dialog = new KeePassWin.ContentDialogs.IconsGrid();
+            await dialog.ShowAsync();
+            previewIcon.Text = dialog.SelectedEmoji.GetIcon();
         }
     }
 }

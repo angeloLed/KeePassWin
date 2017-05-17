@@ -6,8 +6,25 @@ using System.Threading.Tasks;
 
 namespace KeePassWin
 {
-    class Emoji
+    public class Emoji
     {
-        public string Text { get; set; }
+        public int Code { get; set; }
+        public string Icon { get; set; }
+
+        public Emoji(int code)
+        {
+            this.Code = code;
+            this.Icon = this.GetIcon();
+        }
+
+        public string GetIcon()
+        {
+            return Char.ConvertFromUtf32(this.Code);
+        }
+
+        public int GetCode()
+        {
+            return this.Code;
+        }
     }
 }

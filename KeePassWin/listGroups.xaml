@@ -18,9 +18,12 @@
                         <MenuFlyoutItem Click="DeleteGroup_Click" x:Name="DeleteButton" Text="Delete"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel Margin="20,20,0,0">
-                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{x:Bind Name}"></TextBlock>
-                    <TextBlock FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Description}"></TextBlock>
+                <StackPanel Margin="5,5,5,5">
+                    <RelativePanel>
+                        <TextBlock MinWidth="30" Name="icon" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Icon}" FontFamily="Segoe MDL2 Assets" Foreground="Gray"></TextBlock>
+                        <TextBlock Name="name" RelativePanel.RightOf="icon" FontSize="16" HorizontalAlignment="Left" Text="{x:Bind Name}" ></TextBlock>
+                        <TextBlock RelativePanel.RightOf="icon" RelativePanel.Below="name" FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Description}"></TextBlock>
+                    </RelativePanel>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
@@ -32,7 +35,7 @@
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="1" x:Name="buttonNewGroup" Content="New Group" Click="buttonNewGroup_Click" />
+        <Button Margin="5,5,5,5" Background="Orange" Grid.Row="1" x:Name="buttonNewGroup" Content="New Group" Click="buttonNewGroup_Click" />
         <ListView x:Name="gridElements" 
                   ItemsSource="{x:Bind db.Groups,Mode=OneWay}"
                   IsItemClickEnabled="True" 

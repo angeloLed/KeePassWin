@@ -14,7 +14,7 @@
     <ContentDialog.Resources>
         <DataTemplate x:Key="GroupItemTemplate" x:DataType="data:Emoji">
             <StackPanel >
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="{x:Bind Text}"></TextBlock>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="{x:Bind Icon}"></TextBlock>
             </StackPanel>
         </DataTemplate>
        </ContentDialog.Resources>
