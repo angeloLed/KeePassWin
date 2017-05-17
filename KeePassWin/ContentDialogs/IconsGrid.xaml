@@ -6,12 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="TITLE"
-    PrimaryButtonText="Button1"
-    SecondaryButtonText="Button2"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+    Title="Select the icon"
 
-    <Grid>
+    xmlns:data="using:KeePassWin"
+    >
+
+    <ContentDialog.Resources>
+        <DataTemplate x:Key="GroupItemTemplate" x:DataType="data:Emoji">
+            <StackPanel >
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="{x:Bind Text}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+       </ContentDialog.Resources>
+
+            <Grid>
+        <GridView x:Name="GridViewIcons" SelectionChanged="MyGridView_SelectionChanged" ItemTemplate="{StaticResource GroupItemTemplate}">
+
+            <!--<TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#xE10F;"></TextBlock>-->
+        </GridView>
     </Grid>
 </ContentDialog>

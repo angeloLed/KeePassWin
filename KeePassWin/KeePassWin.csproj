@@ -110,6 +110,7 @@
     <Compile Include="EditKey.xaml.cs">
       <DependentUpon>EditKey.xaml</DependentUpon>
     </Compile>
+    <Compile Include="library\Emoji.cs" />
     <Compile Include="ListGroups.xaml.cs">
       <DependentUpon>ListGroups.xaml</DependentUpon>
     </Compile>
