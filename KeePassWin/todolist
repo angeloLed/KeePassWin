@@ -5,3 +5,5 @@
 + edit current database infos
 + empty datasource template ( for listview)
 + (EPIC) synk onedrive
++ loading spinner on loading db
++ loading spinner on saving db
