@@ -24,6 +24,7 @@ namespace KeePassWin
     {
       
         public static Db currentDb { get; set; }
+        public static Session Session { get; set; }
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato

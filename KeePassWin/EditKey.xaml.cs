@@ -49,6 +49,8 @@ namespace KeePassWin
                 this.keys = (ObservableCollection<Key>)e.Parameter;
 
             }
+
+            Utils.SetTitlepage("Edit Key");
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)

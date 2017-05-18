@@ -35,7 +35,7 @@ namespace KeePassWin
         {
             base.OnNavigatedTo(e);
             this.db = App.currentDb;
-            
+
             //inizialize dialog
             deletedialog = new Windows.UI.Popups.MessageDialog(
                 "You are sure to remove the selected group?",
@@ -52,6 +52,13 @@ namespace KeePassWin
 
             deletedialog.DefaultCommandIndex = 0;
             deletedialog.CancelCommandIndex = 1;
+
+            Utils.SetTitlepage("Groups");
+
+            //TODO: call method "checkNoItem"; if call now, listitem lost the databinding :/
+            if (App.currentDb.Groups.Count == 0) {
+                listViewNoItems.Visibility = Visibility.Visible;
+            }
         }
 
         private void buttonNewGroup_Click(object sender, RoutedEventArgs e)
@@ -91,6 +98,25 @@ namespace KeePassWin
             this.selectedGroup = senderElement.DataContext as GroupKeys;
             FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
             flyoutBase.ShowAt(senderElement);
+        }
+
+        private void checkNoItem()
+        {
+            if (gridElements.Items.Count == 0)
+            {
+                listViewNoItems.Visibility = Visibility.Visible;
+                gridElements.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                listViewNoItems.Visibility = Visibility.Collapsed;
+                gridElements.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void gridElements_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+        {
+            this.checkNoItem();
         }
     }
 }

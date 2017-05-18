@@ -36,11 +36,37 @@
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
 
-        <Button Margin="5,5,5,5" Background="Orange" Grid.Row="1" x:Name="buttonNewKey" Content="New Key" Click="buttonNewKey_Click" />
-        <ListView x:Name="gridElements" 
-                  ItemsSource="{x:Bind keys}"
+
+        <StackPanel Grid.Row="0">
+            <ListView x:Name="gridElements" 
+                  ItemsSource="{x:Bind keys, Mode=OneWay}"
                   IsItemClickEnabled="True" 
-                ItemTemplate="{StaticResource GroupItemTemplate}" ItemClick="gridElements_ItemClick" >
-        </ListView>
+                ItemTemplate="{StaticResource GroupItemTemplate}"
+                 ItemClick="gridElements_ItemClick"
+                    Visibility="Visible"
+              ContainerContentChanging="gridElements_ContainerContentChanging" >
+            </ListView>
+            
+            <TextBlock 
+                Foreground="LightGray"
+                FontFamily="Segoe MDL2 Assets"
+                x:Name="listViewNoItems"  
+                Margin="5,5,0,5"  
+                HorizontalAlignment="Left"  
+                Text="&#xE74B;"  
+                Visibility="Collapsed"
+                FontSize="72"
+                VerticalAlignment="Top"
+                RenderTransformOrigin="0.5,0.5" >
+                <TextBlock.RenderTransform>
+                    <CompositeTransform ScaleY="4" TranslateY="200" ScaleX="2" TranslateX="30"/>
+                </TextBlock.RenderTransform>
+
+            </TextBlock>
+
+        </StackPanel>
+
+        <Button Margin="5,5,5,5" Background="Orange" Grid.Row="1" x:Name="buttonNewKey" Content="New Key" Click="buttonNewKey_Click" />
+
     </Grid>
 </Page>
