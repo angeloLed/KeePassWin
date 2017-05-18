@@ -26,8 +26,6 @@ namespace KeePassWin
     {
         GroupKeys gk;
 
-
-
         public EditGroup()
         {
             this.InitializeComponent();
@@ -44,6 +42,8 @@ namespace KeePassWin
                 desc.Text = gk.Description ?? "";
                 note.Text = gk.Note ?? "";
             }
+
+            Utils.SetTitlepage("Edit Group");
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)

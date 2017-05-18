@@ -1,9 +1,9 @@
 ﻿
 + force show password on editKey form
-+ access to HeadTitlePage component in home page from other page ( change title page )
 + add database
 + edit current database infos
-+ empty datasource template ( for listview)
 + (EPIC) synk onedrive
 + loading spinner on loading db
 + loading spinner on saving db
++ intercept back button device
++ add datetime create and update

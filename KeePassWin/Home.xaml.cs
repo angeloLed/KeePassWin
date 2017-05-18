@@ -31,7 +31,14 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-           
+
+            App.Session = new Session();
+
+            App.Session.PropertyChanged += (sender, ev) =>
+            {
+                HeadTitlePage.Text = App.Session.CurrentPageTitle;
+            };
+
             App.currentDb.PropertyChanged += (sender, ev) =>
             {
 

@@ -46,6 +46,14 @@ namespace KeePassWin
             deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("No") { Id = 1 });
             deletedialog.DefaultCommandIndex = 0;
             deletedialog.CancelCommandIndex = 1;
+
+            Utils.SetTitlepage("List of Keys");
+
+            //TODO: call method "checkNoItem"; if call now, listitem lost the databinding :/
+            if (this.keys.Count == 0)
+            {
+                listViewNoItems.Visibility = Visibility.Visible;
+            }
         }
 
         private void buttonNewKey_Click(object sender, RoutedEventArgs e)
@@ -87,6 +95,25 @@ namespace KeePassWin
             this.selectedKey = senderElement.DataContext as Key;
             FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
             flyoutBase.ShowAt(senderElement);
+        }
+
+        private void checkNoItem()
+        {
+            if (gridElements.Items.Count == 0)
+            {
+                listViewNoItems.Visibility = Visibility.Visible;
+                gridElements.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                listViewNoItems.Visibility = Visibility.Collapsed;
+                gridElements.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void gridElements_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+        {
+            this.checkNoItem();
         }
     }
 }
