@@ -24,7 +24,12 @@
                 <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" PlaceholderText="" Margin="5" RelativePanel.Below="desc"/>
                 <Button x:Name="iconSelect" HorizontalContentAlignment="Stretch" RelativePanel.Below="note" Margin="5" Content="Select Icon" Click="icon_Click"/>
                 <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" x:Name="previewIcon" RelativePanel.RightOf="iconSelect" Margin="5" RelativePanel.AlignVerticalCenterWith="iconSelect" Text="&#xEC26;"/>
-                <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="iconSelect" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
+
+                <TextBox Header="Created At" Width="200" IsReadOnly="True" x:Name="createdAt" Margin="5" RelativePanel.Below="iconSelect"/>
+                <TextBox Header="Update At" Width="200" IsReadOnly="True" x:Name="updateAt" Margin="5" RelativePanel.Below="createdAt"/>
+
+
+                <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="updateAt" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
             </RelativePanel>
         </ScrollViewer>
         

@@ -20,6 +20,8 @@ namespace KeePassWin
                 OnPropertyChanged("currentPageTitle");
             }
         }
+
+        public bool PengingSave { get; set; }
 #endregion
 
         protected void OnPropertyChanged(string name)

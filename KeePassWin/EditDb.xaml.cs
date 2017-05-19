@@ -22,14 +22,21 @@ namespace KeePassWin
     /// </summary>
     public sealed partial class EditDb : Page
     {
+        private Db db = new Db();
         public EditDb()
         {
             this.InitializeComponent();
         }
 
-        private void orangeButton_Click(object sender, RoutedEventArgs e)
+        private async void orangeButton_Click(object sender, RoutedEventArgs e)
         {
-            Db db = new Db();
+            if (!checkPassword())
+            {
+                ContentDialogs.WrongPassword dialog = new KeePassWin.ContentDialogs.WrongPassword();
+                await dialog.ShowAsync();
+
+                return;
+            }
 
             db.Title = title.Text;
             db.Password = password.Password;
@@ -38,6 +45,26 @@ namespace KeePassWin
 
             App.currentDb = db;
             this.Frame.Navigate(typeof(Home), db);
+        }
+
+        private void showPassword_Click(object sender, RoutedEventArgs e)
+        {
+            password.PasswordRevealMode = (password.PasswordRevealMode == PasswordRevealMode.Visible) ? PasswordRevealMode.Hidden : PasswordRevealMode.Visible;
+        }
+
+        private bool checkPassword()
+        {
+            bool ok = true;
+
+            if (password.Password != db.Password)
+            {
+                if(passwordRep.Password != password.Password)
+                {
+                    ok = false;
+                }
+            }
+
+            return ok;
         }
     }
 }

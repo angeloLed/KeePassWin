@@ -19,7 +19,7 @@
             </Border>
         </StackPanel>
 
-        <SplitView Grid.Row="1" x:Name="splitView" DisplayMode="Overlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
+        <SplitView Grid.Row="1" x:Name="splitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
 
             <SplitView.Pane>
                 <StackPanel Background="Orange">

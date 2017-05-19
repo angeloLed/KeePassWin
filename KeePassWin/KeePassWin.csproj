@@ -101,6 +101,9 @@
     <Compile Include="ContentDialogs\IconsGrid.xaml.cs">
       <DependentUpon>IconsGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContentDialogs\WrongPassword.xaml.cs">
+      <DependentUpon>WrongPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditDb.xaml.cs">
       <DependentUpon>EditDb.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ContentDialogs\IconsGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContentDialogs\WrongPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

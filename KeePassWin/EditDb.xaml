@@ -12,7 +12,9 @@
         <RelativePanel>
             <TextBox x:Name="title" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
             <PasswordBox x:Name="password" Width="200" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="" RelativePanel.Below="title" Margin="5"/>
-            <PasswordBox x:Name="passwordRep" Width="200" HorizontalContentAlignment="Stretch" Header="Password" PlaceholderText="" RelativePanel.Below="password" Margin="5"/>
+            <Button FontFamily="Segoe MDL2 Assets" x:Name="showPassword" Margin="0,28,0,0"  RelativePanel.RightOf="password" RelativePanel.AlignVerticalCenterWith="password" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="&#xE052;" Click="showPassword_Click" />
+
+            <PasswordBox x:Name="passwordRep" Width="200" HorizontalContentAlignment="Stretch" Header="Repeate" PlaceholderText="" RelativePanel.Below="password" Margin="5"/>
             <Button x:Name="orangeButton" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="passwordRep" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="orangeButton_Click"/>
         </RelativePanel>
     </Grid>

@@ -33,6 +33,7 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+     
 
             if (e.Parameter.GetType() == typeof(Key)) {
                 this.key = (Key)e.Parameter;
@@ -44,6 +45,16 @@ namespace KeePassWin
                 url.Text = key.Url ?? "";
                 username.Text = key.Username ?? "";
 
+                DateTime datetime;
+                if (DateTime.TryParse(key.CreateAt, out datetime)) {
+                    createdAt.Text = datetime.ToString();
+                }
+                if (DateTime.TryParse(key.UpdateAt, out datetime))
+                {
+                    updateAt.Text = datetime.ToString();
+                }
+
+
             } else if (e.Parameter.GetType() == typeof(ObservableCollection<Key>)) {
                 this.key = new Key();
                 this.keys = (ObservableCollection<Key>)e.Parameter;
@@ -53,16 +64,39 @@ namespace KeePassWin
             Utils.SetTitlepage("Edit Key");
         }
 
-        private void buttonSave_Click(object sender, RoutedEventArgs e)
+        private bool checkPassword()
         {
+            bool ok = true;
+
+            if (password.Password != key.Password) {
+                if (passwordR.Password != password.Password) {
+                    ok = false;
+                }
+            }
+
+            return ok;
+        }
+
+        private async void buttonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (!checkPassword()) {
+                ContentDialogs.WrongPassword dialog = new KeePassWin.ContentDialogs.WrongPassword();
+                await dialog.ShowAsync();
+
+                return;
+            }
+
             key.Title = title.Text;
             key.Note = note.Text;
             key.Password = password.Password;
             key.Url = url.Text;
             key.Username = username.Text;
             key.Icon = previewIcon.Text;
+            key.UpdateAt = DateTime.Now.ToUniversalTime().ToString();
 
             if (this.keys != null) {
+
+                this.key.CreateAt = DateTime.Now.ToUniversalTime().ToString();
                 this.keys.Add(this.key);
             }
 
@@ -74,6 +108,11 @@ namespace KeePassWin
             ContentDialogs.IconsGrid dialog = new KeePassWin.ContentDialogs.IconsGrid();
             await dialog.ShowAsync();
             previewIcon.Text = dialog.SelectedEmoji.GetIcon();
+        }
+
+        private void showPassword_Click(object sender, RoutedEventArgs e)
+        {
+            password.PasswordRevealMode = (password.PasswordRevealMode == PasswordRevealMode.Visible) ? PasswordRevealMode.Hidden : PasswordRevealMode.Visible;
         }
     }
 }

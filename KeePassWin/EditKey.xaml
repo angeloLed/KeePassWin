@@ -12,13 +12,21 @@
             <RelativePanel x:Name="pane">
                 <TextBox x:Name="title" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
                 <TextBox x:Name="username" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="title" Header="Username" PlaceholderText="" Margin="5"/>
+                
                 <PasswordBox x:Name="password" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="username" Header="Password" PlaceholderText="" Margin="5"/>
+                <Button FontFamily="Segoe MDL2 Assets" x:Name="showPassword" Margin="0,28,0,0"  RelativePanel.RightOf="password" RelativePanel.AlignVerticalCenterWith="password" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="&#xE052;" Click="showPassword_Click" />
+                
                 <PasswordBox x:Name="passwordR" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="password" Header="Repeate" PlaceholderText="" Margin="5"/>
                 <TextBox x:Name="url" Width="200" HorizontalContentAlignment="Stretch" Header="Url" RelativePanel.Below="passwordR" PlaceholderText="" Margin="5"/>
                 <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" RelativePanel.Below="url" PlaceholderText="" Margin="5"/>
+                
                 <Button x:Name="iconSelect" HorizontalContentAlignment="Stretch" RelativePanel.Below="note" Margin="5" Content="Select Icon" Click="icon_Click"/>
                 <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" x:Name="previewIcon" RelativePanel.RightOf="iconSelect" Margin="5" RelativePanel.AlignVerticalCenterWith="iconSelect" Text="&#xE192;" />
-                <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="iconSelect" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
+
+                <TextBox Header="Created At" Width="200" IsReadOnly="True" x:Name="createdAt" Margin="5" RelativePanel.Below="iconSelect"/>
+                <TextBox Header="Update At" Width="200" IsReadOnly="True" x:Name="updateAt" Margin="5" RelativePanel.Below="createdAt"/>
+
+                <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="updateAt" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
             </RelativePanel>
         </ScrollViewer>
       

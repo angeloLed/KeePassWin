@@ -79,6 +79,31 @@ namespace KeePassWin
                 OnPropertyChanged("note");
             }
         }
+
+        private String createAt { get; set; }
+        [DataMember]
+        public String CreateAt
+        {
+            get { return createAt; }
+            set
+            {
+                createAt = value;
+                OnPropertyChanged("createDate");
+            }
+        }
+
+        private String updateAt { get; set; }
+        [DataMember]
+        public String UpdateAt
+        {
+            get { return updateAt; }
+            set
+            {
+                updateAt = value;
+                OnPropertyChanged("updateAt");
+            }
+        }
+
         #endregion
 
         #region Event handlers

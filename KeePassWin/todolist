@@ -1,9 +1,15 @@
-﻿
-+ force show password on editKey form
+﻿+ (bug visual) empty template list problem on device landscape
++ perform loading grid icons
++ choise record set icons ( review only)
++ clone record voice to flymenu
 + add database
 + edit current database infos
 + (EPIC) synk onedrive
 + loading spinner on loading db
 + loading spinner on saving db
 + intercept back button device
-+ add datetime create and update
++ add datetime create and update to db
++ show signal db modified
++ versioning element in db ( app version inside record ? )
++ serch engine
++ return to list without save

@@ -41,6 +41,16 @@ namespace KeePassWin
                 name.Text = gk.Name ?? "";
                 desc.Text = gk.Description ?? "";
                 note.Text = gk.Note ?? "";
+
+                DateTime datetime;
+                if (DateTime.TryParse(gk.CreateAt, out datetime))
+                {
+                    createdAt.Text = datetime.ToString();
+                }
+                if (DateTime.TryParse(gk.UpdateAt, out datetime))
+                {
+                    updateAt.Text = datetime.ToString();
+                }
             }
 
             Utils.SetTitlepage("Edit Group");
@@ -54,21 +64,24 @@ namespace KeePassWin
 
             if (this.gk == null) {
 
-                //update
+                //new
                 App.currentDb.Groups.Add(new GroupKeys {
                     Icon = previewIcon.Text,
                     Name = name.Text,
                     Keys = new ObservableCollection<Key>(),
                     Description = desc.Text,
-                    Note = note.Text
+                    Note = note.Text,
+                    CreateAt = DateTime.Now.ToUniversalTime().ToString(),
+                    UpdateAt = DateTime.Now.ToUniversalTime().ToString()
                 });
             }
             else {
-                //new
+                //update
                 gk.Icon = previewIcon.Text;
                 gk.Name = name.Text;
                 gk.Description = desc.Text;
                 gk.Note = note.Text;
+                gk.UpdateAt = DateTime.Now.ToUniversalTime().ToString();
             }
            
             this.Frame.GoBack();
