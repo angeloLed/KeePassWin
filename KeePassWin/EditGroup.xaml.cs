@@ -40,7 +40,7 @@ namespace KeePassWin
                 previewIcon.Text = gk.Icon ?? "";
                 name.Text = gk.Name ?? "";
                 desc.Text = gk.Description ?? "";
-                note.Text = gk.Note ?? "";
+                note.Document.SetText( Windows.UI.Text.TextSetOptions.None, gk.Note ?? "");
 
                 DateTime datetime;
                 if (DateTime.TryParse(gk.CreateAt, out datetime))
@@ -65,22 +65,27 @@ namespace KeePassWin
             if (this.gk == null) {
 
                 //new
+                string richText;
+                note.Document.GetText(Windows.UI.Text.TextGetOptions.None, out richText);
                 App.currentDb.Groups.Add(new GroupKeys {
                     Icon = previewIcon.Text,
                     Name = name.Text,
                     Keys = new ObservableCollection<Key>(),
                     Description = desc.Text,
-                    Note = note.Text,
+                    Note = richText,
                     CreateAt = DateTime.Now.ToUniversalTime().ToString(),
                     UpdateAt = DateTime.Now.ToUniversalTime().ToString()
                 });
             }
-            else {
+            else
+            {
+                string richText;
+                note.Document.GetText(Windows.UI.Text.TextGetOptions.None, out richText);
                 //update
                 gk.Icon = previewIcon.Text;
                 gk.Name = name.Text;
                 gk.Description = desc.Text;
-                gk.Note = note.Text;
+                gk.Note = richText;
                 gk.UpdateAt = DateTime.Now.ToUniversalTime().ToString();
             }
            

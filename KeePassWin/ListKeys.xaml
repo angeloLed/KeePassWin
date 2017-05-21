@@ -33,12 +33,11 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,20,20,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="100" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-
-        <StackPanel Grid.Row="0">
-            <ListView x:Name="gridElements" 
+            <ListView x:Name="gridElements"  Grid.Row="0"
                   ItemsSource="{x:Bind keys, Mode=OneWay}"
                   IsItemClickEnabled="True" 
                 ItemTemplate="{StaticResource GroupItemTemplate}"
@@ -46,27 +45,28 @@
                     Visibility="Visible"
               ContainerContentChanging="gridElements_ContainerContentChanging" >
             </ListView>
-            
-            <TextBlock 
-                Foreground="LightGray"
-                FontFamily="Segoe MDL2 Assets"
-                x:Name="listViewNoItems"  
-                Margin="5,5,0,5"  
-                HorizontalAlignment="Left"  
-                Text="&#xE74B;"  
-                Visibility="Collapsed"
-                FontSize="72"
-                VerticalAlignment="Top"
-                RenderTransformOrigin="0.5,0.5" >
-                <TextBlock.RenderTransform>
-                    <CompositeTransform ScaleY="4" TranslateY="200" ScaleX="2" TranslateX="30"/>
-                </TextBlock.RenderTransform>
 
-            </TextBlock>
+        <TextBlock 
+            Grid.Row="2"
+            Foreground="LightGray"
+            FontFamily="Segoe MDL2 Assets"
+            x:Name="listViewNoItems"  
+            Margin="5,-32,0,10"  
+            HorizontalAlignment="Left"  
+            Text="&#xE74B;"  
+            Visibility="Collapsed" 
+               FontSize="72"
+               RenderTransformOrigin="0.4,0.5" >
+            <TextBlock.RenderTransform>
+                <CompositeTransform ScaleY="4" 
+                                    TranslateY="-150"
+                                    ScaleX="2" 
+                                    TranslateX="30"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
 
-        </StackPanel>
-
-        <Button Margin="5,5,5,5" Background="Orange" Grid.Row="1" x:Name="buttonNewKey" Content="New Key" Click="buttonNewKey_Click" />
+        <Button Margin="5,5,5,5" Background="Orange" Grid.Row="2" x:Name="buttonNewKey" Content="New Key" Click="buttonNewKey_Click" />
 
     </Grid>
+
 </Page>

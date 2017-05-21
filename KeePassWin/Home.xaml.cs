@@ -45,6 +45,8 @@ namespace KeePassWin
                 App.Session.PengingSave = true;
                 buttonDbSave.Foreground = new SolidColorBrush(Colors.Red);
             };
+
+            this.navigateTo(typeof(ListGroups));
         }
 
         private void buttonSpitter_Click(object sender, RoutedEventArgs e)
@@ -59,9 +61,15 @@ namespace KeePassWin
 
         private void navigateTo(Type page)
         {
+            this.navigateTo(page, null);
+        }
+
+        private void navigateTo(Type page, string parameter)
+        {
             splitView.IsPaneOpen = false;
-            if (splitView.Content != null) {
-                ((Frame)splitView.Content).Navigate(page);
+            if (splitView.Content != null)
+            {
+                ((Frame)splitView.Content).Navigate(page, parameter);
             }
 
             /*var frame = this.Frame;
@@ -79,6 +87,35 @@ namespace KeePassWin
             App.Session.PengingSave = false;
             buttonDbSave.Foreground = new SolidColorBrush(Colors.Black);
             splitView.IsPaneOpen = false;
+        }
+
+        private void buttonDbEdit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(EditDb));
+        }
+
+        private async void buttomDbList_Click(object sender, RoutedEventArgs e)
+        {
+            bool exit = true;
+
+            if (App.Session.PengingSave) {
+                ContentDialogs.PendingSaveDialog dialog = new KeePassWin.ContentDialogs.PendingSaveDialog();
+                await dialog.ShowAsync();
+
+                exit = dialog.skipSave;
+
+            }
+
+            if (exit)
+            {
+                this.Frame.Navigate(typeof(ListDb));
+            }
+
+        }
+
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            this.navigateTo(typeof(SearchKeys), textSearch.Text);
         }
     }
 }

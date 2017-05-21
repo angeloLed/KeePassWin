@@ -40,7 +40,7 @@ namespace KeePassWin
 
                 previewIcon.Text = key.Icon ?? "&#xE192;";
                 title.Text = key.Title ?? "";
-                note.Text = key.Note ?? "";
+                note.Document.SetText(Windows.UI.Text.TextSetOptions.None, key.Note ?? "");
                 password.Password = key.Password ?? "";
                 url.Text = key.Url ?? "";
                 username.Text = key.Username ?? "";
@@ -86,8 +86,10 @@ namespace KeePassWin
                 return;
             }
 
+            string richText;
+            note.Document.GetText(Windows.UI.Text.TextGetOptions.None, out richText);
             key.Title = title.Text;
-            key.Note = note.Text;
+            key.Note = richText;
             key.Password = password.Password;
             key.Url = url.Text;
             key.Username = username.Text;

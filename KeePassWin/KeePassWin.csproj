@@ -101,6 +101,9 @@
     <Compile Include="ContentDialogs\IconsGrid.xaml.cs">
       <DependentUpon>IconsGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContentDialogs\PendingSaveDialog.xaml.cs">
+      <DependentUpon>PendingSaveDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContentDialogs\WrongPassword.xaml.cs">
       <DependentUpon>WrongPassword.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,9 @@
     <Compile Include="library\Emoji.cs" />
     <Compile Include="library\Session.cs" />
     <Compile Include="library\Utils.cs" />
+    <Compile Include="ListDb.xaml.cs">
+      <DependentUpon>ListDb.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListGroups.xaml.cs">
       <DependentUpon>ListGroups.xaml</DependentUpon>
     </Compile>
@@ -137,6 +143,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="library\Key.cs" />
+    <Compile Include="SearchKeys.xaml.cs">
+      <DependentUpon>SearchKeys.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -168,6 +177,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ContentDialogs\PendingSaveDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContentDialogs\WrongPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditKey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListDb.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +225,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchKeys.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

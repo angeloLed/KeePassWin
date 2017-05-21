@@ -28,6 +28,18 @@ namespace KeePassWin
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (App.currentDb != null) {
+                db = App.currentDb;
+                title.Text = db.Title;
+                password.Password = db.Password;
+                deleteButton.Visibility = Visibility.Visible;
+            }
+        }
+
         private async void orangeButton_Click(object sender, RoutedEventArgs e)
         {
             if (!checkPassword())
@@ -40,7 +52,10 @@ namespace KeePassWin
 
             db.Title = title.Text;
             db.Password = password.Password;
-            db.Groups = new System.Collections.ObjectModel.ObservableCollection<GroupKeys>();
+            if (db.Groups == null) {
+                db.Groups = new System.Collections.ObjectModel.ObservableCollection<GroupKeys>();
+            }
+            
             db.save();
 
             App.currentDb = db;
@@ -64,7 +79,30 @@ namespace KeePassWin
                 }
             }
 
+            if (String.IsNullOrEmpty(password.Password)) {
+                ok = false;
+            }
+
             return ok;
+        }
+
+        private async void delteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.UI.Popups.MessageDialog deletedialog = new Windows.UI.Popups.MessageDialog(
+                "You are sure to remove entire Db? The process is irreversible!",
+                "You are sure?"
+            );
+            deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("Yes") { Id = 0 });
+            deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("No") { Id = 1 });
+            deletedialog.DefaultCommandIndex = 0;
+            deletedialog.CancelCommandIndex = 1;
+
+            var result = await deletedialog.ShowAsync();
+            if (result.Id.ToString() == "0")
+            {
+                await Storage.deleteFile(App.currentDb.FileName);
+                this.Frame.Navigate(typeof(ListDb), db);
+            }
         }
     }
 }

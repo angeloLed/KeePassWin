@@ -12,6 +12,18 @@ namespace KeePassWin
     {
         private static string extension = "kpw";
 
+        public static async Task<bool> deleteFile(string name)
+        {
+            IReadOnlyList<StorageFile> files = await getFiles();
+            foreach (StorageFile file in files) {
+                if (file.Name == mergeExtension(name)) {
+                    await file.DeleteAsync();
+                }
+            }
+
+            return true;
+        }
+
         public static async void saveFile(string path, string content)
         {
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
@@ -21,8 +33,8 @@ namespace KeePassWin
 
         public static async Task<IReadOnlyList<StorageFile>> getFiles()
         {
-            StorageFolder picturesFolder = ApplicationData.Current.LocalFolder;
-            IReadOnlyList<StorageFile> fileList = await picturesFolder.GetFilesAsync();
+            StorageFolder appFolder = ApplicationData.Current.LocalFolder;
+            IReadOnlyList<StorageFile> fileList = await appFolder.GetFilesAsync();
             return fileList;
         }
 

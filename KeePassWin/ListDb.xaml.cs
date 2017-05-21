@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -22,34 +21,37 @@ namespace KeePassWin
     /// <summary>
     /// Pagina vuota che può essere usata autonomamente oppure per l'esplorazione all'interno di un frame.
     /// </summary>
-    public sealed partial class BootPage : Page
+    public sealed partial class ListDb : Page
     {
-        public BootPage()
+        public List<string> filesDb = new List<string>();
+        public ListDb()
         {
             this.InitializeComponent();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //string asd3 = Crypto.Encrypt("abcdef", "password");
-            //string asd4 = Crypto.Decrypt(asd3, "password");
-
+            App.currentDb = null;
             IReadOnlyList<StorageFile> files = await Storage.getFiles();
-            if (files.Count() == 0)
-            {
-                this.Frame.Navigate(typeof(EditDb), null);
+            this.filesDb = files.Select(file => file.Name).ToList();
+
+            foreach (string file in this.filesDb) {
+                listDbGrid.Items.Add(file);
             }
-            else if (files.Count() == 1)
+            listDbGrid.Items.Add("+");
+        }
+
+        private void listDbGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GridView gw = (GridView)sender;
+            if (gw.SelectedIndex != gw.Items.Count - 1)
             {
-                //to login db
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
-                parameters["filename"] = files[0].Name;
+                parameters["filename"] = (string)((GridView)sender).SelectedItem;
                 this.Frame.Navigate(typeof(LoginDb), parameters);
             }
             else {
-
-                //to choise db
-                this.Frame.Navigate(typeof(ListDb), null);
+                this.Frame.Navigate(typeof(EditDb), null);
             }
         }
     }

@@ -16,6 +16,7 @@
 
             <PasswordBox x:Name="passwordRep" Width="200" HorizontalContentAlignment="Stretch" Header="Repeate" PlaceholderText="" RelativePanel.Below="password" Margin="5"/>
             <Button x:Name="orangeButton" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="passwordRep" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="orangeButton_Click"/>
+            <Button x:Name="deleteButton" Width="200" Margin="5" Background="Red" Content="Delete" RelativePanel.Below="orangeButton" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="delteButton_Click" Visibility="Collapsed"/>
         </RelativePanel>
     </Grid>
 </Page>

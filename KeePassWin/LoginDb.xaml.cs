@@ -64,5 +64,10 @@ namespace KeePassWin
                 this.Frame.Navigate(typeof(Home));
             }
         }
+
+        private void homeButtom_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ListDb));
+        }
     }
 }

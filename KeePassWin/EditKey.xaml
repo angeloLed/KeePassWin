@@ -18,13 +18,13 @@
                 
                 <PasswordBox x:Name="passwordR" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="password" Header="Repeate" PlaceholderText="" Margin="5"/>
                 <TextBox x:Name="url" Width="200" HorizontalContentAlignment="Stretch" Header="Url" RelativePanel.Below="passwordR" PlaceholderText="" Margin="5"/>
-                <TextBox x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" RelativePanel.Below="url" PlaceholderText="" Margin="5"/>
+                <RichEditBox Height="100" x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" RelativePanel.Below="url" PlaceholderText="" Margin="5"/>
                 
                 <Button x:Name="iconSelect" HorizontalContentAlignment="Stretch" RelativePanel.Below="note" Margin="5" Content="Select Icon" Click="icon_Click"/>
                 <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" x:Name="previewIcon" RelativePanel.RightOf="iconSelect" Margin="5" RelativePanel.AlignVerticalCenterWith="iconSelect" Text="&#xE192;" />
 
-                <TextBox Header="Created At" Width="200" IsReadOnly="True" x:Name="createdAt" Margin="5" RelativePanel.Below="iconSelect"/>
-                <TextBox Header="Update At" Width="200" IsReadOnly="True" x:Name="updateAt" Margin="5" RelativePanel.Below="createdAt"/>
+                <TextBox Header="Created At" Width="200" IsReadOnly="True" x:Name="createdAt" Margin="5" RelativePanel.Below="iconSelect"  BorderThickness="0"  Foreground="Gray"/>
+                <TextBox Header="Update At" Width="200" IsReadOnly="True" x:Name="updateAt" Margin="5" RelativePanel.Below="createdAt"  BorderThickness="0"  Foreground="Gray"/>
 
                 <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="updateAt" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
             </RelativePanel>
