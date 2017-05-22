@@ -42,19 +42,18 @@
         <TextBlock 
             Grid.Row="2"
             Foreground="LightGray"
-            FontFamily="Segoe MDL2 Assets"
             x:Name="listViewNoItems"  
             Margin="5,-32,0,10"  
             HorizontalAlignment="Left"  
-            Text="&#xE74B;"  
-            Visibility="Collapsed" 
-               FontSize="72"
+            Text="NO RESULTS"  
+            Visibility="Visible" 
+               FontSize="28"
                RenderTransformOrigin="0.4,0.5" >
             <TextBlock.RenderTransform>
                 <CompositeTransform ScaleY="4" 
-                                    TranslateY="-150"
+                                    TranslateY="-200"
                                     ScaleX="2" 
-                                    TranslateX="30"/>
+                                    TranslateX="80"/>
             </TextBlock.RenderTransform>
         </TextBlock>
 

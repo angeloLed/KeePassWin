@@ -1,11 +1,8 @@
 ﻿+ (EPIC) synk onedrive
 + loading spinner on loading db
 + loading spinner on saving db
-+ intercept back button device
 + add datetime create and update to db
 + versioning element in db ( app version inside record ? )
-+ search engine
-+ return to list without save
 + hashing file name
 + check datetime timezone
 

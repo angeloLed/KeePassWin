@@ -38,7 +38,13 @@ namespace KeePassWin
                 this.search((string)e.Parameter);
             }
 
-            Utils.SetTitlepage("Search on Db");
+            Utils.SetTitlepage("Search on Db for '"+ (string)e.Parameter + "'");
+
+            //TODO: call method "checkNoItem"; if call now, listitem lost the databinding :/
+            if (this.keys.Count == 0)
+            {
+                listViewNoItems.Visibility = Visibility.Visible;
+            }
         }
 
         private void search(string searchString)

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -47,6 +48,8 @@ namespace KeePassWin
             };
 
             this.navigateTo(typeof(ListGroups));
+
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
         }
 
         private void buttonSpitter_Click(object sender, RoutedEventArgs e)
@@ -115,7 +118,40 @@ namespace KeePassWin
 
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
         {
-            this.navigateTo(typeof(SearchKeys), textSearch.Text);
+            if (String.IsNullOrEmpty(textSearch.Text))
+            {
+                splitView.IsPaneOpen = true;
+                textSearch.Focus(FocusState.Keyboard);
+            }
+            else {
+
+                this.navigateTo(typeof(SearchKeys), textSearch.Text);
+            }
+        }
+
+        private async void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+
+            Frame splitviewFrame = ((Frame)splitView.Content);
+
+            if (splitviewFrame.CanGoBack)
+            {
+             //   e.Handled = true;
+                splitviewFrame.GoBack();
+            }
+            else if (App.Session.PengingSave)
+            {
+                ContentDialogs.PendingSaveDialog dialog = new KeePassWin.ContentDialogs.PendingSaveDialog();
+                await dialog.ShowAsync();
+
+                if (dialog.skipSave) {
+                    Application.Current.Exit();
+                }
+
+            }
+            else {
+                Application.Current.Exit();
+            }
         }
     }
 }
