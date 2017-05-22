@@ -32,8 +32,8 @@ namespace KeePassWin
         {
             base.OnNavigatedTo(e);
 
-            if (App.currentDb != null) {
-                db = App.currentDb;
+            if (App.CurrentDb != null) {
+                db = App.CurrentDb;
                 title.Text = db.Title;
                 password.Password = db.Password;
                 deleteButton.Visibility = Visibility.Visible;
@@ -58,7 +58,7 @@ namespace KeePassWin
             
             db.save();
 
-            App.currentDb = db;
+            App.CurrentDb = db;
             this.Frame.Navigate(typeof(Home), db);
         }
 
@@ -100,7 +100,7 @@ namespace KeePassWin
             var result = await deletedialog.ShowAsync();
             if (result.Id.ToString() == "0")
             {
-                await Storage.deleteFile(App.currentDb.FileName);
+                await Storage.deleteFile(App.CurrentDb.FileName);
                 this.Frame.Navigate(typeof(ListDb), db);
             }
         }

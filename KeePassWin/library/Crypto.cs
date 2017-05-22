@@ -12,9 +12,10 @@ namespace KeePassWin
     // created from base of : https://janhannemann.wordpress.com/2013/11/10/simple-encryption-for-windows-winrt-and-windows-phone/
     public class Crypto
     {
-        private static string salt = "!!salt!!";
+        private static string salt = App.Config.cryptoSalt;
 
-        public static string Encrypt(string body, string pw)
+
+        public static string Encrypt(string body, string pw)
         {
             IBuffer pwBuffer = CryptographicBuffer.ConvertStringToBinary(pw, BinaryStringEncoding.Utf8);
             IBuffer saltBuffer = CryptographicBuffer.ConvertStringToBinary(salt, BinaryStringEncoding.Utf16LE);

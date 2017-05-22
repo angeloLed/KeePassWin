@@ -52,7 +52,7 @@ namespace KeePassWin
             searchString = searchString.ToLower();
             keys.Clear();
 
-            foreach (GroupKeys gk in App.currentDb.Groups)
+            foreach (GroupKeys gk in App.CurrentDb.Groups)
             {
                 IEnumerable<Key> keysTemp = gk.Keys.Where(x =>
                     x.Note.ToLower().Contains(searchString)

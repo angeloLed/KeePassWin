@@ -31,7 +31,7 @@ namespace KeePassWin
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            App.currentDb = null;
+            App.CurrentDb = null;
             IReadOnlyList<StorageFile> files = await Storage.getFiles();
             this.filesDb = files.Select(file => file.Name).ToList();
 

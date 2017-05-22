@@ -58,8 +58,8 @@ namespace KeePassWin
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (App.currentDb.Groups == null) {
-                App.currentDb.Groups = new ObservableCollection<GroupKeys>();
+            if (App.CurrentDb.Groups == null) {
+                App.CurrentDb.Groups = new ObservableCollection<GroupKeys>();
             }
 
             if (this.gk == null) {
@@ -67,7 +67,7 @@ namespace KeePassWin
                 //new
                 string richText;
                 note.Document.GetText(Windows.UI.Text.TextGetOptions.None, out richText);
-                App.currentDb.Groups.Add(new GroupKeys {
+                App.CurrentDb.Groups.Add(new GroupKeys {
                     Icon = previewIcon.Text,
                     Name = name.Text,
                     Keys = new ObservableCollection<Key>(),

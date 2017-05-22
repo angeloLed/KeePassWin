@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,8 +26,9 @@ namespace KeePassWin
     sealed partial class App : Application
     {
       
-        public static Db currentDb { get; set; }
+        public static Db CurrentDb { get; set; }
         public static Session Session { get; set; }
+        public static dynamic Config { get; set; }
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato
@@ -42,8 +45,14 @@ namespace KeePassWin
         /// verranno usati altri punti di ingresso per aprire un file specifico.
         /// </summary>
         /// <param name="e">Dettagli sulla richiesta e sul processo di avvio.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
+            //loading app confing
+            var uri = new System.Uri("ms-appx:///config.json");
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            Config = JObject.Parse(await FileIO.ReadTextAsync(file));
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Non ripetere l'inizializzazione dell'applicazione se la finestra già dispone di contenuto,
@@ -81,7 +90,8 @@ namespace KeePassWin
                     // Quando lo stack di esplorazione non viene ripristinato, passare alla prima pagina
                     // e configurare la nuova pagina passando le informazioni richieste come parametro
                     // parametro
-                    rootFrame.Navigate(typeof(BootPage), e.Arguments);
+                   // rootFrame.Navigate(typeof(BootPage), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Assicurarsi che la finestra corrente sia attiva
                 Window.Current.Activate();

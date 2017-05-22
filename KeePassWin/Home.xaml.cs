@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -41,15 +42,15 @@ namespace KeePassWin
                 HeadTitlePage.Text = App.Session.CurrentPageTitle;
             };
 
-            App.currentDb.PropertyChanged += (sender, ev) =>
+            App.CurrentDb.PropertyChanged += (sender, ev) =>
             {
                 App.Session.PengingSave = true;
                 buttonDbSave.Foreground = new SolidColorBrush(Colors.Red);
             };
 
-            this.navigateTo(typeof(ListGroups));
-
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+
+            this.navigateTo(typeof(ListGroups));
         }
 
         private void buttonSpitter_Click(object sender, RoutedEventArgs e)
@@ -85,7 +86,7 @@ namespace KeePassWin
 
         private void buttonDbSave_Click(object sender, RoutedEventArgs e)
         {
-            App.currentDb.save();
+            App.CurrentDb.save();
 
             App.Session.PengingSave = false;
             buttonDbSave.Foreground = new SolidColorBrush(Colors.Black);

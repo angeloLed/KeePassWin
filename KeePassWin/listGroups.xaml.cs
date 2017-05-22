@@ -34,7 +34,7 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.db = App.currentDb;
+            this.db = App.CurrentDb;
 
             //inizialize dialog
             deletedialog = new Windows.UI.Popups.MessageDialog(
@@ -56,7 +56,7 @@ namespace KeePassWin
             Utils.SetTitlepage("Groups");
 
             //TODO: call method "checkNoItem"; if call now, listitem lost the databinding :/
-            if (App.currentDb.Groups.Count == 0) {
+            if (App.CurrentDb.Groups.Count == 0) {
                 listViewNoItems.Visibility = Visibility.Visible;
             }
         }

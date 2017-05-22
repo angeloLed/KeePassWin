@@ -60,7 +60,7 @@ namespace KeePassWin
             if (!String.IsNullOrEmpty(decryptedBody)) {
 
                 Db db = Db.getFromJson(decryptedBody);
-                App.currentDb = db;
+                App.CurrentDb = db;
                 this.Frame.Navigate(typeof(Home));
             }
         }
