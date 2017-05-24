@@ -117,6 +117,7 @@
       <DependentUpon>EditKey.xaml</DependentUpon>
     </Compile>
     <Compile Include="library\Emoji.cs" />
+    <Compile Include="library\Onedrive.cs" />
     <Compile Include="library\Session.cs" />
     <Compile Include="library\Utils.cs" />
     <Compile Include="ListDb.xaml.cs">

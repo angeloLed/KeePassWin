@@ -69,25 +69,8 @@ namespace KeePassWin
             gggrid.ItemsSource = this.persons;
             */
 
-            
-            string[] scopes = new string[3];
-            scopes[0] = "onedrive.readwrite";
-            //scopes[1] = "wl.signin";
-            scopes[2] = "offline_access";
-
-            var msaAuthProvider = new MsaAuthenticationProvider(
-                App.Config.applicationId.Value,
-                    "https://login.live.com/oauth20_desktop.srf",
-                    scopes
-            );
-            await msaAuthProvider.AuthenticateUserAsync();
-            var oneDriveClient = new OneDriveClient("https://api.onedrive.com/v1.0", msaAuthProvider);
-
-            var rootItem = await oneDriveClient
-                            .Drive
-                            .Root
-                            .Request()
-                            .GetAsync();
+            Onedrive test = new Onedrive();
+            test.connect();
         }
 
         /*

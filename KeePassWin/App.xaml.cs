@@ -29,6 +29,7 @@ namespace KeePassWin
         public static Db CurrentDb { get; set; }
         public static Session Session { get; set; }
         public static dynamic Config { get; set; }
+        public static ApplicationDataContainer localSettings { get; set; }
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato
@@ -53,15 +54,19 @@ namespace KeePassWin
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
             Config = JObject.Parse(await FileIO.ReadTextAsync(file));
 
-            Frame rootFrame = Window.Current.Content as Frame;
+            //instanziate localsettings
+            localSettings = ApplicationData.Current.LocalSettings;
+            var value = localSettings.Values["#test"];
+            if (value == null)
+            {
+                localSettings.Values["#test"] = 5;
+            }
 
-            // Non ripetere l'inizializzazione dell'applicazione se la finestra già dispone di contenuto,
-            // assicurarsi solo che la finestra sia attiva
+            Frame rootFrame = Window.Current.Content as Frame;
+            
             if (rootFrame == null)
             {
-                // Creare un frame che agisca da contesto di navigazione e passare alla prima pagina
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 rootFrame.Navigated += OnNavigated; //handler backbutton
 
@@ -69,14 +74,10 @@ namespace KeePassWin
                 {
                     //TODO: caricare lo stato dall'applicazione sospesa in precedenza
                 }
-
-                // Posizionare il frame nella finestra corrente
+                
                 Window.Current.Content = rootFrame;
-
-                // Register a handler for BackRequested events and set the
-                // visibility of the Back button
+                
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
-
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                     rootFrame.CanGoBack ?
                     AppViewBackButtonVisibility.Visible :
@@ -87,13 +88,9 @@ namespace KeePassWin
             {
                 if (rootFrame.Content == null)
                 {
-                    // Quando lo stack di esplorazione non viene ripristinato, passare alla prima pagina
-                    // e configurare la nuova pagina passando le informazioni richieste come parametro
-                    // parametro
-                   // rootFrame.Navigate(typeof(BootPage), e.Arguments);
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
-                // Assicurarsi che la finestra corrente sia attiva
+                
                 Window.Current.Activate();
             }
         }
@@ -124,7 +121,6 @@ namespace KeePassWin
 
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
-            // Each time a navigation event occurs, update the Back button's visibility
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                 ((Frame)sender).CanGoBack ?
                 AppViewBackButtonVisibility.Visible :
