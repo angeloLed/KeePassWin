@@ -29,7 +29,7 @@ namespace KeePassWin
         public static Db CurrentDb { get; set; }
         public static Session Session { get; set; }
         public static dynamic Config { get; set; }
-        public static ApplicationDataContainer localSettings { get; set; }
+        public static ApplicationDataContainer LocalSettings { get; set; }
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato
@@ -55,11 +55,11 @@ namespace KeePassWin
             Config = JObject.Parse(await FileIO.ReadTextAsync(file));
 
             //instanziate localsettings
-            localSettings = ApplicationData.Current.LocalSettings;
-            var value = localSettings.Values["#test"];
+            LocalSettings = ApplicationData.Current.LocalSettings;
+            var value = LocalSettings.Values["#test"];
             if (value == null)
             {
-                localSettings.Values["#test"] = 5;
+                LocalSettings.Values["#test"] = 5;
             }
 
             Frame rootFrame = Window.Current.Content as Frame;

@@ -69,8 +69,8 @@ namespace KeePassWin
             gggrid.ItemsSource = this.persons;
             */
 
-            Onedrive test = new Onedrive();
-            test.connect();
+            OnedriveArbiter test = new OnedriveArbiter();
+            test.Connect();
         }
 
         /*
