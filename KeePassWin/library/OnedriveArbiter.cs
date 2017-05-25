@@ -74,24 +74,49 @@ namespace KeePassWin
                 await this.connect();
             }
 
-            this.getDbs();
+            ItemChildrenCollectionPage dbs = await this.getDbs();
+
         }
 
-        private async void getDbs()
+        private async Task<ItemChildrenCollectionPage> getDbs()
         {
-            if (App.LocalSettings.Values["#OD_rootFolderId"] == null) {
-                this.creteRootFolder();
+            if (App.LocalSettings.Values["#OD_rootFolderId"] == null)
+            {
+                await this.creteRootFolder();
             }
 
-            var dbs = await oneDriveClient
+            bool exists = await this.existsFolder(App.LocalSettings.Values["#OD_rootFolderId"].ToString());
+            if ( !exists ) {
+                await this.creteRootFolder();
+            }
+            
+            ItemChildrenCollectionPage dbs = (ItemChildrenCollectionPage)await oneDriveClient
                 .Drive
                .Items[App.LocalSettings.Values["#OD_rootFolderId"].ToString()]
-                .Request()
+               .Children 
+               .Request()
                 .GetAsync();
 
+            return dbs;
         }
 
-        private async void creteRootFolder()
+        private async Task<bool> existsFolder(string id)
+        {
+            try {
+                var dbs = await oneDriveClient
+               .Drive
+              .Items[id]
+              .Request()
+               .GetAsync();
+
+                return true;
+            }
+            catch(Exception e){
+                return false;
+            }
+        }
+
+        private async Task<string> creteRootFolder()
         {
             var root = await oneDriveClient
                 .Drive
@@ -107,6 +132,7 @@ namespace KeePassWin
                 .AddAsync(new Item { Name = "KeeSync", Folder = new Folder() });
 
             App.LocalSettings.Values["#OD_rootFolderId"] = rootFolder.Id;
+            return rootFolder.Id;
 
         }
     }
