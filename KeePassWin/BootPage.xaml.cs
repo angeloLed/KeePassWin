@@ -36,7 +36,7 @@ namespace KeePassWin
             await App.OA.Connect();
 
             if (! App.OA.HasFirstTimeSyncComplete()) {
-                await App.OA.InitDbs();
+                await App.OA.FirstKissOnedrive();
             }
 
             //local storage

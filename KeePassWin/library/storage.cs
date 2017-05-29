@@ -8,18 +8,29 @@ using Windows.Storage;
 
 namespace KeePassWin
 {
+    delegate void FileSaved(StorageFile sender);
+    delegate void FileDeleted(StorageFile sender);
+
     class Storage
     {
+        public static event FileSaved FileSavedEvent;
+        public static event FileDeleted FileDeletedEvent;
+
         private static string extension = "kpw";
 
         public static async Task<bool> deleteFile(string name)
         {
             IReadOnlyList<StorageFile> files = await getFiles();
+            StorageFile fileDeleted = null;
+
             foreach (StorageFile file in files) {
                 if (file.Name == mergeExtension(name)) {
+                    fileDeleted = file;
                     await file.DeleteAsync();
                 }
             }
+
+            FileDeletedEvent?.Invoke(fileDeleted);
 
             return true;
         }
@@ -27,8 +38,10 @@ namespace KeePassWin
         public static async void saveFile(string path, string content)
         {
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile sampleFile = await storageFolder.CreateFileAsync(mergeExtension(path), CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(sampleFile, content);
+            StorageFile file = await storageFolder.CreateFileAsync(mergeExtension(path), CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, content);
+
+            FileSavedEvent?.Invoke(file);
         }
 
         public static async Task<IReadOnlyList<StorageFile>> getFiles()
