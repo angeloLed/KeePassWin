@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KeePassWin
 {
-    class OnedriveArbiter
+    public class OnedriveArbiter
     {
         private MsaAuthenticationProvider msaAuthProvider;
         private OneDriveClient oneDriveClient;
@@ -21,6 +21,24 @@ namespace KeePassWin
         /* public bool IsConnected()
          {
          }*/
+
+
+        public bool HasFirstTimeSyncComplete()
+        {
+            return App.LocalSettings.Values["#OD_firstTimeSync"] != null;
+        }
+
+        public async Task<bool> InitDbs()
+        {
+            ItemChildrenCollectionPage dbs = await this.getDbs();
+
+            foreach (Item item in dbs)
+            {
+
+            }
+
+            return true;
+        }
 
         private async Task<bool> connect()
         {
@@ -64,7 +82,7 @@ namespace KeePassWin
             return true;
         }
 
-        public async void Connect()
+        public async Task<bool> Connect()
         {
             if (App.LocalSettings.Values["#OD_refreshToken"] != null && App.LocalSettings.Values["#OD_userId"] != null)
             {
@@ -76,6 +94,7 @@ namespace KeePassWin
 
             ItemChildrenCollectionPage dbs = await this.getDbs();
 
+            return true;
         }
 
         private async Task<ItemChildrenCollectionPage> getDbs()

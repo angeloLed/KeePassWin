@@ -30,6 +30,7 @@ namespace KeePassWin
         public static Session Session { get; set; }
         public static dynamic Config { get; set; }
         public static ApplicationDataContainer LocalSettings { get; set; }
+        public static OnedriveArbiter OA { get; set; }
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato
@@ -56,11 +57,6 @@ namespace KeePassWin
 
             //instanziate localsettings
             LocalSettings = ApplicationData.Current.LocalSettings;
-            var value = LocalSettings.Values["#test"];
-            if (value == null)
-            {
-                LocalSettings.Values["#test"] = 5;
-            }
 
             Frame rootFrame = Window.Current.Content as Frame;
             
@@ -88,7 +84,7 @@ namespace KeePassWin
             {
                 if (rootFrame.Content == null)
                 {
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(BootPage), e.Arguments);
                 }
                 
                 Window.Current.Activate();

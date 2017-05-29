@@ -31,9 +31,15 @@ namespace KeePassWin
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //string asd3 = Crypto.Encrypt("abcdef", "password");
-            //string asd4 = Crypto.Decrypt(asd3, "password");
+            //onedrive
+            App.OA = new OnedriveArbiter();
+            await App.OA.Connect();
 
+            if (! App.OA.HasFirstTimeSyncComplete()) {
+                await App.OA.InitDbs();
+            }
+
+            //local storage
             IReadOnlyList<StorageFile> files = await Storage.getFiles();
             if (files.Count() == 0)
             {
