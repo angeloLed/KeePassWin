@@ -35,8 +35,13 @@ namespace KeePassWin
             App.OA = new OnedriveArbiter();
             await App.OA.Connect();
 
-            if (! App.OA.HasFirstTimeSyncComplete()) {
+            if (!App.OA.HasFirstTimeSyncComplete())
+            {
                 await App.OA.FirstKissOnedrive();
+            }
+            else
+            {
+                await App.OA.Sync();
             }
 
             //local storage

@@ -8,6 +8,6 @@
     mc:Ignorable="d" Loaded="Page_Loaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <ProgressRing x:Name="loadingRing" Height="150" Width="150" IsActive="True" />
     </Grid>
 </Page>

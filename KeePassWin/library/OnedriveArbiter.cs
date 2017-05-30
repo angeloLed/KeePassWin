@@ -29,9 +29,68 @@ namespace KeePassWin
             return App.LocalSettings.Values["#OD_firstTimeSync"] != null;
         }
 
-        public async Task<bool> FirstKissOnedrive()
+        public async Task FirstKissOnedrive()
         {
+            //download database
+            await this.downloadFilesProcedure();
 
+            //upload database
+            await this.uploadFilesProcedure();
+
+            App.LocalSettings.Values["#OD_firstTimeSync"] = true;
+        }
+
+        public async Task Sync()
+        {
+            //download/update database
+            ItemChildrenCollectionPage remoteDbs = await this.downloadFilesProcedure();
+
+            //check dbs to delete
+            List<string> localDbsToDelete = new List<string>();
+            IReadOnlyList<StorageFile> localDbs = await Storage.getFiles();
+            foreach (StorageFile db in localDbs)
+            {
+                var result = remoteDbs.Where(d => d.Name == db.Name);
+                if (result.Count() == 0) {
+                    localDbsToDelete.Add(db.Name);
+                }
+            }
+
+            //procede to delete
+            foreach (string dbName in localDbsToDelete)
+            {
+                await Storage.deleteFile(dbName);
+            }
+
+        }
+
+        public async Task Connect()
+        {
+            if (App.LocalSettings.Values["#OD_refreshToken"] != null && App.LocalSettings.Values["#OD_userId"] != null)
+            {
+                await this.refreshConnect();
+            }
+            else
+            {
+                await this.connect();
+            }
+
+            ItemChildrenCollectionPage dbs = await this.getDbs();
+
+            this.connected = true;
+        }
+
+        public bool IsConnected()
+        {
+            return this.connected;
+        }
+
+        #endregion
+
+        #region PRIVATE METHODS
+
+        private async Task<ItemChildrenCollectionPage> downloadFilesProcedure()
+        {
             //download database
             ItemChildrenCollectionPage dbs = await this.getDbs();
             foreach (Item file in dbs)
@@ -51,58 +110,33 @@ namespace KeePassWin
                 Storage.saveFile(file.Name, content);
             }
 
-            //upload database
+            return dbs;
+        }
+
+        private async Task uploadFilesProcedure()
+        {
             IReadOnlyList<StorageFile> localDbs = await Storage.getFiles();
             foreach (StorageFile localDb in localDbs)
             {
                 await this.updateDb(localDb);
             }
-
-            return true;
         }
 
-        public async Task<bool> Connect()
-        {
-            if (App.LocalSettings.Values["#OD_refreshToken"] != null && App.LocalSettings.Values["#OD_userId"] != null)
-            {
-                await this.refreshConnect();
-            }
-            else
-            {
-                await this.connect();
-            }
-
-            ItemChildrenCollectionPage dbs = await this.getDbs();
-
-            this.connected = true;
-
-            return true;
-        }
-
-        public bool IsConnected()
-        {
-            return this.connected;
-        }
-
-        #endregion
-
-        #region PRIVATE METHODS
-
-        private async void updateFile(StorageFile file)
+        private void updateFile(StorageFile file)
         {
             if (this.IsConnected()) {
-                await this.updateDb(file);
+                this.updateDb(file);
             }
         }
 
-        private async void deleteFle(StorageFile file)
+        private void deleteFle(StorageFile file)
         {
             if (this.IsConnected()) {
-                await this.deleteDb(file);
+                this.deleteDb(file);
             }
         }
 
-        private async Task<bool> deleteDb(StorageFile db)
+        private async Task deleteDb(StorageFile db)
         {
             await this.oneDriveClient
               .Drive
@@ -110,11 +144,10 @@ namespace KeePassWin
               .ItemWithPath("KeeSync/" + db.Name)
               .Request()
               .DeleteAsync();
-
-            return true;
+            
         }
 
-        private async Task<bool> updateDb(StorageFile db)
+        private async Task updateDb(StorageFile db)
         {
             var randomAccessStream = await db.OpenReadAsync();
             Stream stream = randomAccessStream.AsStreamForRead();
@@ -129,11 +162,9 @@ namespace KeePassWin
                     .Request() 
                     .PutAsync<Item>(stream);
             }
-
-            return true;
         }
 
-        private async Task<bool> connect()
+        private async Task connect()
         {
             this.msaAuthProvider = new MsaAuthenticationProvider(
                 App.Config.applicationId.Value,
@@ -149,11 +180,9 @@ namespace KeePassWin
             this.oneDriveClient = new OneDriveClient("https://api.onedrive.com/v1.0", this.msaAuthProvider);
             App.LocalSettings.Values["#OD_refreshToken"] = this.msaAuthProvider.CurrentAccountSession.RefreshToken;
             App.LocalSettings.Values["#OD_userId"] = this.msaAuthProvider.CurrentAccountSession.UserId;
-
-            return true;
         }
 
-        private async Task<bool> refreshConnect()
+        private async Task refreshConnect()
         {
             AccountSession session = new AccountSession();
             session.ClientId = App.LocalSettings.Values["#OD_userId"].ToString();
@@ -171,8 +200,6 @@ namespace KeePassWin
             this.oneDriveClient = new OneDriveClient("https://api.onedrive.com/v1.0", this.msaAuthProvider);
             this.msaAuthProvider.CurrentAccountSession = session;
             await this.msaAuthProvider.AuthenticateUserAsync();
-
-            return true;
         }
 
         private async Task<ItemChildrenCollectionPage> getDbs()
