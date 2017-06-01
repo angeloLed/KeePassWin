@@ -31,17 +31,23 @@ namespace KeePassWin
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //onedrive
+            //init onedrive
             App.OA = new OnedriveArbiter();
-            await App.OA.Connect();
+            if (App.IsConnected()) {
+                await App.OA.Connect();
 
-            if (!App.OA.HasFirstTimeSyncComplete())
-            {
-                await App.OA.FirstKissOnedrive();
-            }
-            else
-            {
-                await App.OA.Sync();
+                if (App.OA.IsConnected())
+                {
+                    if (App.OA.HasFirstTimeSyncComplete())
+                    {
+                        await App.OA.Sync();
+                    }
+                    else
+                    {
+                        await App.OA.FirstKissOnedrive();
+                    }
+                }
+ 
             }
 
             //local storage

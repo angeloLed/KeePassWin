@@ -22,7 +22,7 @@ namespace KeePassWin
         }
 
         public bool PengingSave { get; set; }
-#endregion
+        #endregion
 
         protected void OnPropertyChanged(string name)
         {

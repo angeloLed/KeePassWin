@@ -66,18 +66,24 @@ namespace KeePassWin
 
         public async Task Connect()
         {
-            if (App.LocalSettings.Values["#OD_refreshToken"] != null && App.LocalSettings.Values["#OD_userId"] != null)
-            {
-                await this.refreshConnect();
+            try {
+                if (App.LocalSettings.Values["#OD_refreshToken"] != null && App.LocalSettings.Values["#OD_userId"] != null)
+                {
+                    await this.refreshConnect();
+                }
+                else
+                {
+                    await this.connect();
+                }
+
+                //ItemChildrenCollectionPage dbs = await this.getDbs();
+
+                this.connected = true;
             }
-            else
-            {
-                await this.connect();
+            catch (Exception e) {
+                this.connected = false;
             }
 
-            ItemChildrenCollectionPage dbs = await this.getDbs();
-
-            this.connected = true;
         }
 
         public bool IsConnected()
@@ -144,7 +150,7 @@ namespace KeePassWin
               .ItemWithPath("KeeSync/" + db.Name)
               .Request()
               .DeleteAsync();
-            
+
         }
 
         private async Task updateDb(StorageFile db)
@@ -157,9 +163,9 @@ namespace KeePassWin
                     .Drive
                     //.Items[App.LocalSettings.Values["#OD_rootFolderId"].ToString()]
                     .Root
-                    .ItemWithPath("KeeSync/"+db.Name)
+                    .ItemWithPath("KeeSync/" + db.Name)
                     .Content
-                    .Request() 
+                    .Request()
                     .PutAsync<Item>(stream);
             }
         }
@@ -170,9 +176,9 @@ namespace KeePassWin
                 App.Config.applicationId.Value,
                     "https://login.live.com/oauth20_desktop.srf",
                     new string[] {
-                        "onedrive.readwrite"
-                        ,"wl.offline_access"
-                        ,"wl.signin"
+                                    "onedrive.readwrite"
+                                    ,"wl.offline_access"
+                                    ,"wl.signin"
                     }
             );
 
