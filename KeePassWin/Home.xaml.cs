@@ -50,6 +50,12 @@ namespace KeePassWin
 
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
+            if (App.IsMobile)
+            {
+                splitView.DisplayMode = SplitViewDisplayMode.Inline;
+            }
+
+
             this.navigateTo(typeof(ListGroups));
         }
 

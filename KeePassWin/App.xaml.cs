@@ -43,6 +43,15 @@ namespace KeePassWin
             this.Suspending += OnSuspending;
         }
 
+        public static bool IsMobile
+        {
+            get
+            {
+                var qualifiers = Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().QualifierValues;
+                return (qualifiers.ContainsKey("DeviceFamily") && qualifiers["DeviceFamily"] == "Mobile");
+            }
+        }
+
         /// <summary>
         /// Richiamato quando l'applicazione viene avviata normalmente dall'utente. All'avvio dell'applicazione
         /// verranno usati altri punti di ingresso per aprire un file specifico.

@@ -18,6 +18,7 @@
                         <MenuFlyoutItem Click="DeleteGroup_Click" x:Name="DeleteButton" Text="Delete"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
+                <!--
                 <StackPanel Margin="5,5,5,5">
                     <RelativePanel>
                         <TextBlock MinWidth="30" Name="icon" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Icon}" FontFamily="Segoe MDL2 Assets" Foreground="Gray"></TextBlock>
@@ -25,6 +26,33 @@
                         <TextBlock RelativePanel.RightOf="icon" RelativePanel.Below="name" FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Description}"></TextBlock>
                     </RelativePanel>
                 </StackPanel>
+                -->
+
+                <Grid Margin="0,11,0,13">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Text="{x:Bind Name}" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <TextBlock Text="{x:Bind Description}" Grid.Row="1" Grid.Column="1" MaxLines="1" Style="{ThemeResource ListBodyTextBlockStyle}" />
+
+                    <TextBlock
+                    Text="{x:Bind Icon}"
+                    Grid.Column="0"
+                    Margin="1,1,12,0"
+                    Style="{ThemeResource ListCaptionAltTextblockStyle}"
+                    FontFamily="Segoe MDL2 Assets"
+                    Foreground="Gray"
+                        FontSize="20"/>
+                </Grid>
+
+
             </StackPanel>
         </DataTemplate>
     </Page.Resources>

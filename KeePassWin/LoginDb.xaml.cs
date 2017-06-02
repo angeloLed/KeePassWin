@@ -34,7 +34,7 @@ namespace KeePassWin
             base.OnNavigatedTo(e);
             Dictionary<string, string> parameters = (Dictionary<string, string>)e.Parameter;
 
-            labelLogin.Text = "Opening : " + parameters["filename"];
+            labelDb.Text = parameters["filename"];
             this.bodyFile = await Storage.getContentFile(parameters["filename"]);
         }
 
