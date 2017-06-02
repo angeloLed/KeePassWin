@@ -1,10 +1,9 @@
-﻿+ (EPIC) synk onedrive
-+ loading spinner on loading db
-+ loading spinner on saving db
+﻿+ loading spinner on saving db
 + add datetime create and update to db
 + versioning element in db ( app version inside record ? )
 + hashing file name
 + check datetime timezone
++ check file exists
 
 after
 + (bug visual) empty template list problem on device landscape

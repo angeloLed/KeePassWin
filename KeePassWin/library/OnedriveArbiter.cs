@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 
 namespace KeePassWin
 {
@@ -42,16 +43,42 @@ namespace KeePassWin
 
         public async Task Sync()
         {
-            //download/update database
-            ItemChildrenCollectionPage remoteDbs = await this.downloadFilesProcedure();
+            //remote dbs
+            ItemChildrenCollectionPage remoteDbs = await this.getDbs();
 
-            //check dbs to delete
-            List<string> localDbsToDelete = new List<string>();
+            //local dbs
             IReadOnlyList<StorageFile> localDbs = await Storage.getFiles();
+
+            //check procedure
+            foreach (Item remoteDb in remoteDbs)
+            {
+                var localDb = localDbs.Where(d => d.Name == remoteDb.Name).FirstOrDefault();
+                if (localDb != null)
+                {
+                    BasicProperties localDbInfos = await localDb.GetBasicPropertiesAsync();
+
+                    if (localDbInfos.DateModified <= remoteDb.LastModifiedDateTime)
+                    {
+                        await this.downloadDb(remoteDb);
+                    }
+                    else
+                    {
+                        await this.updateDb(localDb);
+                    }
+                }
+                else
+                {
+                    await this.downloadDb(remoteDb);
+                }
+            }
+
+            //check to delete
+            List<string> localDbsToDelete = new List<string>();
             foreach (StorageFile db in localDbs)
             {
                 var result = remoteDbs.Where(d => d.Name == db.Name);
-                if (result.Count() == 0) {
+                if (result.Count() == 0)
+                {
                     localDbsToDelete.Add(db.Name);
                 }
             }
@@ -61,7 +88,6 @@ namespace KeePassWin
             {
                 await Storage.deleteFile(dbName);
             }
-
         }
 
         public async Task Connect()
@@ -101,22 +127,27 @@ namespace KeePassWin
             ItemChildrenCollectionPage dbs = await this.getDbs();
             foreach (Item file in dbs)
             {
-                string content = "";
-                Stream stream = await this.oneDriveClient
-                              .Drive
-                              .Items[file.Id]
-                              .Content
-                              .Request()
-                              .GetAsync();
-                StreamReader reader = new StreamReader(stream);
-                using (reader)
-                {
-                    content = reader.ReadToEnd();
-                }
-                Storage.saveFile(file.Name, content);
+                await this.downloadDb(file);
             }
 
             return dbs;
+        }
+
+        private async Task downloadDb(Item remoteDb)
+        {
+            string content = "";
+            Stream stream = await this.oneDriveClient
+                          .Drive
+                          .Items[remoteDb.Id]
+                          .Content
+                          .Request()
+                          .GetAsync();
+            StreamReader reader = new StreamReader(stream);
+            using (reader)
+            {
+                content = reader.ReadToEnd();
+            }
+            Storage.saveFile(remoteDb.Name, content);
         }
 
         private async Task uploadFilesProcedure()
@@ -128,10 +159,10 @@ namespace KeePassWin
             }
         }
 
-        private void updateFile(StorageFile file)
+        private async void updateFile(StorageFile file)
         {
             if (this.IsConnected()) {
-                this.updateDb(file);
+                await this.updateDb(file);
             }
         }
 

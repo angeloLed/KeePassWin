@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace KeePassWin
@@ -92,7 +94,8 @@ namespace KeePassWin
         {
             //TODO: hash file name
             if (String.IsNullOrEmpty(this.FileName)) {
-                this.FileName = this.Title;
+
+                this.FileName = Path.GetInvalidFileNameChars().Aggregate(this.Title, (current, c) => current.Replace(c.ToString(), string.Empty));
             }
 
             string body = JsonConvert.SerializeObject(this);
