@@ -6,8 +6,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Networking.Connectivity;
 using Windows.Storage;
 using Windows.UI.Core;
@@ -32,11 +30,7 @@ namespace KeePassWin
         public static dynamic Config { get; set; }
         public static ApplicationDataContainer LocalSettings { get; set; }
         public static OnedriveArbiter OA { get; set; }
-
-        /// <summary>
-        /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato
-        /// creato e, come tale, corrisponde all'equivalente logico di main() o WinMain().
-        /// </summary>
+        
         public App()
         {
             this.InitializeComponent();
@@ -52,14 +46,8 @@ namespace KeePassWin
             }
         }
 
-        /// <summary>
-        /// Richiamato quando l'applicazione viene avviata normalmente dall'utente. All'avvio dell'applicazione
-        /// verranno usati altri punti di ingresso per aprire un file specifico.
-        /// </summary>
-        /// <param name="e">Dettagli sulla richiesta e sul processo di avvio.</param>
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
             //loading app confing
             var uri = new System.Uri("ms-appx:///config.json");
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
@@ -100,24 +88,12 @@ namespace KeePassWin
                 Window.Current.Activate();
             }
         }
-
-        /// <summary>
-        /// Chiamato quando la navigazione a una determinata pagina ha esito negativo
-        /// </summary>
-        /// <param name="sender">Frame la cui navigazione non è riuscita</param>
-        /// <param name="e">Dettagli sull'errore di navigazione.</param>
+        
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
-
-        /// <summary>
-        /// Richiamato quando l'esecuzione dell'applicazione viene sospesa. Lo stato dell'applicazione viene salvato
-        /// senza che sia noto se l'applicazione verrà terminata o ripresa con il contenuto
-        /// della memoria ancora integro.
-        /// </summary>
-        /// <param name="sender">Origine della richiesta di sospensione.</param>
-        /// <param name="e">Dettagli relativi alla richiesta di sospensione.</param>
+        
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();

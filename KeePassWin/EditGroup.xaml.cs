@@ -73,8 +73,8 @@ namespace KeePassWin
                     Keys = new ObservableCollection<Key>(),
                     Description = desc.Text,
                     Note = richText,
-                    CreateAt = DateTime.Now.ToUniversalTime().ToString(),
-                    UpdateAt = DateTime.Now.ToUniversalTime().ToString()
+                    CreateAt = DateTime.Now.ToString(),
+                    UpdateAt = DateTime.Now.ToString()
                 });
             }
             else
@@ -86,7 +86,7 @@ namespace KeePassWin
                 gk.Name = name.Text;
                 gk.Description = desc.Text;
                 gk.Note = richText;
-                gk.UpdateAt = DateTime.Now.ToUniversalTime().ToString();
+                gk.UpdateAt = DateTime.Now.ToString();
             }
            
             this.Frame.GoBack();

@@ -8,6 +8,10 @@
     mc:Ignorable="d" Loaded="Page_Loaded">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="loadingText" FontSize="50"
+            FontFamily="Segoe MDL2 Assets"
+                    Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
         <ProgressRing x:Name="loadingRing" Height="150" Width="150" IsActive="True" />
+        
     </Grid>
 </Page>

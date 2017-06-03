@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,6 +40,9 @@ namespace KeePassWin
                 listDbGrid.Items.Add(file);
             }
             listDbGrid.Items.Add("+");
+
+
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
         }
 
         private void listDbGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -53,6 +57,12 @@ namespace KeePassWin
             else {
                 this.Frame.Navigate(typeof(EditDb), null);
             }
+        }
+
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            e.Handled = true;
+            Application.Current.Exit();
         }
     }
 }

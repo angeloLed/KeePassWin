@@ -1,8 +1,6 @@
 ﻿+ loading spinner on saving db
 + add datetime create and update to db
 + versioning element in db ( app version inside record ? )
-+ hashing file name
-+ check datetime timezone
 + check file exists
 
 after
@@ -10,4 +8,3 @@ after
 + choise record set icons ( review only)
 + clone record voice to flymenu
 + perform loading grid icons
-+ difference DisplayMode of splitview.pane ( desk and device )  

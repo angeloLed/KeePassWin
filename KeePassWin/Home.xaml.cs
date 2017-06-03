@@ -45,7 +45,8 @@ namespace KeePassWin
             App.CurrentDb.PropertyChanged += (sender, ev) =>
             {
                 App.Session.PengingSave = true;
-                buttonDbSave.Foreground = new SolidColorBrush(Colors.Red);
+                DbSaveIcon.Foreground = new SolidColorBrush(Colors.Red);
+                DbSaveText.Foreground = new SolidColorBrush(Colors.Red);
             };
 
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
@@ -95,8 +96,11 @@ namespace KeePassWin
             App.CurrentDb.save();
 
             App.Session.PengingSave = false;
-            buttonDbSave.Foreground = new SolidColorBrush(Colors.Black);
             splitView.IsPaneOpen = false;
+
+
+            DbSaveIcon.Foreground = new SolidColorBrush(Colors.Black);
+            DbSaveText.Foreground = new SolidColorBrush(Colors.Black);
         }
 
         private void buttonDbEdit_Click(object sender, RoutedEventArgs e)
@@ -138,12 +142,11 @@ namespace KeePassWin
 
         private async void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-
             Frame splitviewFrame = ((Frame)splitView.Content);
+            e.Handled = true;
 
             if (splitviewFrame.CanGoBack)
             {
-             //   e.Handled = true;
                 splitviewFrame.GoBack();
             }
             else if (App.Session.PengingSave)

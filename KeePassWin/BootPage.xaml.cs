@@ -31,7 +31,16 @@ namespace KeePassWin
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            //general config
+            loadingText.Text = Char.ConvertFromUtf32(59155);
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                statusBar.HideAsync();
+            }
+
             //init onedrive
+            loadingText.Text = Char.ConvertFromUtf32(59219);
             App.OA = new OnedriveArbiter();
             if (App.IsConnected()) {
                 await App.OA.Connect();
@@ -51,6 +60,7 @@ namespace KeePassWin
             }
 
             //local storage
+            loadingText.Text = Char.ConvertFromUtf32(61076);
             IReadOnlyList<StorageFile> files = await Storage.getFiles();
             if (files.Count() == 0)
             {

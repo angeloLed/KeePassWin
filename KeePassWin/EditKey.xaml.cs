@@ -33,7 +33,6 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-     
 
             if (e.Parameter.GetType() == typeof(Key)) {
                 this.key = (Key)e.Parameter;
@@ -58,7 +57,6 @@ namespace KeePassWin
             } else if (e.Parameter.GetType() == typeof(ObservableCollection<Key>)) {
                 this.key = new Key();
                 this.keys = (ObservableCollection<Key>)e.Parameter;
-
             }
 
             Utils.SetTitlepage("Edit Key");
@@ -94,11 +92,11 @@ namespace KeePassWin
             key.Url = url.Text;
             key.Username = username.Text;
             key.Icon = previewIcon.Text;
-            key.UpdateAt = DateTime.Now.ToUniversalTime().ToString();
+            key.UpdateAt = DateTime.Now.ToString();
 
             if (this.keys != null) {
 
-                this.key.CreateAt = DateTime.Now.ToUniversalTime().ToString();
+                this.key.CreateAt = DateTime.Now.ToString();
                 this.keys.Add(this.key);
             }
 
