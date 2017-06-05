@@ -7,8 +7,8 @@
     <ProjectGuid>{FDD3BBF7-9EC9-4DD7-AC17-0755A103014F}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KeePassWin</RootNamespace>
-    <AssemblyName>KeePassWin</AssemblyName>
+    <RootNamespace>KeeSync</RootNamespace>
+    <AssemblyName>KeeSync</AssemblyName>
     <DefaultLanguage>it-IT</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>

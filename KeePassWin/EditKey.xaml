@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer>
-            <RelativePanel x:Name="pane">
+            <RelativePanel x:Name="panel" KeyDown="panel_KeyDown">
                 <TextBox x:Name="title" Width="200" HorizontalContentAlignment="Stretch" Header="Title" PlaceholderText="" Margin="5"/>
                 <TextBox x:Name="username" Width="200" HorizontalContentAlignment="Stretch" RelativePanel.Below="title" Header="Username" PlaceholderText="" Margin="5"/>
                 

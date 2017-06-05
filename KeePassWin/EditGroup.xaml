@@ -18,7 +18,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer>
-            <RelativePanel x:Name="pane">
+            <RelativePanel x:Name="panel" KeyDown="panel_KeyDown">
                 <TextBox x:Name="name" Width="200" HorizontalContentAlignment="Stretch" Header="Name" PlaceholderText="" Margin="5"/>
                 <TextBox x:Name="desc" Width="200" HorizontalContentAlignment="Stretch" Header="Description" PlaceholderText="" Margin="5" RelativePanel.Below="name"/>
                 <RichEditBox  x:Name="note" Width="200" HorizontalContentAlignment="Stretch" Header="Note" PlaceholderText="" Height="100" Margin="5" RelativePanel.Below="desc"/>

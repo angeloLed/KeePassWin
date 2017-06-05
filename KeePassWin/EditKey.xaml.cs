@@ -107,12 +107,30 @@ namespace KeePassWin
         {
             ContentDialogs.IconsGrid dialog = new KeePassWin.ContentDialogs.IconsGrid();
             await dialog.ShowAsync();
-            previewIcon.Text = dialog.SelectedEmoji.GetIcon();
+            if (dialog.SelectedEmoji != null) {
+                previewIcon.Text = dialog.SelectedEmoji.GetIcon();
+            }
         }
 
         private void showPassword_Click(object sender, RoutedEventArgs e)
         {
             password.PasswordRevealMode = (password.PasswordRevealMode == PasswordRevealMode.Visible) ? PasswordRevealMode.Hidden : PasswordRevealMode.Visible;
+        }
+
+        private void panel_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                e.Handled = true;
+                if (FocusManager.GetFocusedElement() != buttonSave)
+                {
+                    FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+                }
+                else
+                {
+                    buttonSave_Click(sender, e);
+                }
+            }
         }
     }
 }

@@ -38,26 +38,36 @@ namespace KeePassWin
             this.bodyFile = await Storage.getContentFile(parameters["filename"]);
         }
 
-        private async void orangeButton_Click(object sender, RoutedEventArgs e)
+        private async void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            performLogin();
+        }
+
+        private async void performLogin()
         {
             string decryptedBody = "";
 
-            try {
+            try
+            {
                 decryptedBody = Crypto.Decrypt(this.bodyFile, password.Password);
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 string messageError = "";
-                if (ex.Message.Contains("Exception from HRESULT: 0x80070017")) {
+                if (ex.Message.Contains("Exception from HRESULT: 0x80070017"))
+                {
                     messageError = "Wrong Password";
                 }
-                else {
+                else
+                {
                     messageError = "Error to login :" + ex.Message;
                 }
                 var dialog = new MessageDialog(messageError);
                 await dialog.ShowAsync();
             }
 
-            if (!String.IsNullOrEmpty(decryptedBody)) {
+            if (!String.IsNullOrEmpty(decryptedBody))
+            {
 
                 Db db = Db.getFromJson(decryptedBody);
                 App.CurrentDb = db;
@@ -68,6 +78,21 @@ namespace KeePassWin
         private void homeButtom_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ListDb));
+        }
+
+        private void RelativePanel_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    performLogin();
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine("error on keydown event: "+ ex.Message);
+            }
         }
     }
 }
