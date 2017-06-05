@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="7983efc4-efe8-4796-b0ed-151f3a173d14" Publisher="CN=THOR-PC" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="7983efc4-efe8-4796-b0ed-151f3a173d14" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="45732Angev.KeeSync" Publisher="CN=1EB47F5A-6C6C-4872-8137-4E91EE4B5F3C" Version="0.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="346bbcbb-805f-4484-8ed2-64b6fcfddee3" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>KeePassWin</DisplayName>
-    <PublisherDisplayName>THOR-PC</PublisherDisplayName>
+    <DisplayName>KeeSync</DisplayName>
+    <PublisherDisplayName>DEVOS</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
