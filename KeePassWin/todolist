@@ -2,6 +2,7 @@
 + add datetime create and update to db
 + versioning element in db ( app version inside record ? )
 + check file exists
++ perform delete key from search form
 
 after
 + (bug visual) empty template list problem on device landscape

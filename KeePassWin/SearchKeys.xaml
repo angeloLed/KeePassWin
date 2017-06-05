@@ -12,6 +12,12 @@
         <DataTemplate x:Key="GroupItemTemplate" x:DataType="data:Key">
             <StackPanel  Holding="gridElements_Holding" RightTapped="gridElements_RightTapped" Orientation="Horizontal" HorizontalAlignment="Left">
 
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Click="DeleteItem_Click" x:Name="DeleteButton" Text="Delete"/>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                
                 <StackPanel Margin="5,5,5,5">
                     <RelativePanel>
                         <TextBlock MinWidth="30" Name="icon" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Icon}" FontFamily="Segoe MDL2 Assets" Foreground="Gray"></TextBlock>
@@ -25,12 +31,19 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,20,20,0">
         <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
             <RowDefinition Height="1" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <ListView x:Name="gridElements"  Grid.Row="0"
+        <AutoSuggestBox x:Name="searchText"
+                        Grid.Row="0"
+                        QueryIcon="Find"
+                        Text="search here" 
+                        TextChanged="searchText_TextChanged" Margin="10,4,10,0"/>
+
+        <ListView x:Name="gridElements"  Grid.Row="1"
                   ItemsSource="{x:Bind keys, Mode=OneWay}"
                   IsItemClickEnabled="True" 
                 ItemTemplate="{StaticResource GroupItemTemplate}"
@@ -40,7 +53,7 @@
         </ListView>
 
         <TextBlock 
-            Grid.Row="2"
+            Grid.Row="3"
             Foreground="LightGray"
             x:Name="listViewNoItems"  
             Margin="5,-32,0,10"  

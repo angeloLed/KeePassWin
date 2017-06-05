@@ -28,8 +28,8 @@
                     <!--<Button x:Name="buttonSpitter" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="buttonSpitter_Click"/>-->
 
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="buttonSearch" FontFamily="Segoe MDL2 Assets" Content="&#xE11A;" Width="50" Height="50" Background="Transparent" Click="buttonSearch_Click"/>
-                        <TextBox x:Name="textSearch" Text="" FontSize="12" VerticalAlignment="Center" Width="190" />
+                        <Button x:Name="buttonSearch" FontFamily="Segoe MDL2 Assets" Content="&#xE11A;" Width="50" Height="50" Background="Transparent" Click="buttonSearch_Click" />
+                        <TextBox x:Name="textSearch" KeyDown="textSearch_KeyDown" Text="" FontSize="12" VerticalAlignment="Center" Width="190" />
                     </StackPanel>
 
                     <Button x:Name="buttonGroupes" Click="buttonGroupes_Click" Padding="0" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">

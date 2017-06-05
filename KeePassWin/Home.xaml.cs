@@ -163,5 +163,14 @@ namespace KeePassWin
                 Application.Current.Exit();
             }
         }
+
+        private void textSearch_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                e.Handled = true;
+                this.buttonSearch_Click(sender, e);
+            }
+        }
     }
 }

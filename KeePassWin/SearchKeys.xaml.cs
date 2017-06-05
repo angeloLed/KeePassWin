@@ -34,11 +34,13 @@ namespace KeePassWin
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            Utils.SetTitlepage("Searching key");
+
             if (!String.IsNullOrEmpty((string)e.Parameter)) {
                 this.search((string)e.Parameter);
+                searchText.Text = (string)e.Parameter;
             }
-
-            Utils.SetTitlepage("Search on Db for '"+ (string)e.Parameter + "'");
 
             //TODO: call method "checkNoItem"; if call now, listitem lost the databinding :/
             if (this.keys.Count == 0)
@@ -65,6 +67,9 @@ namespace KeePassWin
                     keys.Add(k);
                 }
             }
+
+            gridElements.ItemsSource = keys;
+            checkNoItem();
         }
 
         private void gridElements_ItemClick(object sender, ItemClickEventArgs e)
@@ -75,13 +80,15 @@ namespace KeePassWin
 
         private void gridElements_Holding(object sender, HoldingRoutedEventArgs e)
         {
-            FrameworkElement senderElement = sender as FrameworkElement;
-            this.selectedKey = senderElement.DataContext as Key;
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
-            flyoutBase.ShowAt(senderElement);
+            performSelection(sender);
         }
 
         private void gridElements_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            performSelection(sender);
+        }
+
+        protected void performSelection(object sender)
         {
             FrameworkElement senderElement = sender as FrameworkElement;
             this.selectedKey = senderElement.DataContext as Key;
@@ -105,7 +112,21 @@ namespace KeePassWin
 
         private void gridElements_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
         {
-            this.checkNoItem();
+           // this.checkNoItem();
+        }
+
+
+        private void searchText_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (searchText.Text.Trim() != "")
+            {
+                this.search(searchText.Text);
+            }
+        }
+        
+        private void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO:
         }
     }
 }
