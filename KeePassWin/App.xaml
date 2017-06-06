@@ -8,17 +8,20 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
+
+                <!-- ***************************************** DARK ********************** -->
                 <ResourceDictionary x:Key="Dark">
                     <Style x:Key="ListCaptionAltTextblockStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
                         <Setter Property="FontSize" Value="13"/>
                         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
                     </Style>
-
                     <Style x:Key="ListBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
                         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
                     </Style>
                 </ResourceDictionary>
 
+
+                <!-- ***************************************** LIGHT ********************** -->
                 <ResourceDictionary x:Key="Light">
                     <Style x:Key="ListCaptionAltTextblockStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
                         <Setter Property="FontSize" Value="13"/>
@@ -30,6 +33,8 @@
                     </Style>
                 </ResourceDictionary>
 
+
+                <!-- ***************************************** HighContrast ********************** -->
                 <ResourceDictionary x:Key="HighContrast">
                     <!-- Don't set the Foreground in high contrast theme -->
                     <Style x:Key="ListCaptionAltTextblockStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
