@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +24,7 @@ namespace KeePassWin
     public sealed partial class EditDb : Page
     {
         private Db db = new Db();
+        private MessageDialog dialog;
         public EditDb()
         {
             this.InitializeComponent();
@@ -38,6 +40,14 @@ namespace KeePassWin
                 password.Password = db.Password;
                 deleteButton.Visibility = Visibility.Visible;
             }
+
+            //inizialize dialog
+            dialog = new Windows.UI.Popups.MessageDialog(
+                "To delete the db you must to be online.",
+                "You are offline"
+            );
+            dialog.Commands.Add(new Windows.UI.Popups.UICommand("Ok") { Id = 0 });
+            dialog.DefaultCommandIndex = 0;
         }
 
         private async void orangeButton_Click(object sender, RoutedEventArgs e)
@@ -88,20 +98,27 @@ namespace KeePassWin
 
         private async void delteButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Popups.MessageDialog deletedialog = new Windows.UI.Popups.MessageDialog(
-                "You are sure to remove entire Db? The process is irreversible!",
-                "You are sure?"
-            );
-            deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("Yes") { Id = 0 });
-            deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("No") { Id = 1 });
-            deletedialog.DefaultCommandIndex = 0;
-            deletedialog.CancelCommandIndex = 1;
-
-            var result = await deletedialog.ShowAsync();
-            if (result.Id.ToString() == "0")
+            if (App.IsConnected())
             {
-                await Storage.deleteFile(App.CurrentDb.FileName);
-                this.Frame.Navigate(typeof(ListDb), db);
+                Windows.UI.Popups.MessageDialog deletedialog = new Windows.UI.Popups.MessageDialog(
+                    "You are sure to remove entire Db? The process is irreversible!",
+                    "You are sure?"
+                );
+                deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("Yes") { Id = 0 });
+                deletedialog.Commands.Add(new Windows.UI.Popups.UICommand("No") { Id = 1 });
+                deletedialog.DefaultCommandIndex = 0;
+                deletedialog.CancelCommandIndex = 1;
+
+                var result = await deletedialog.ShowAsync();
+                if (result.Id.ToString() == "0")
+                {
+                    await Storage.deleteFile(App.CurrentDb.FileName);
+                    this.Frame.Navigate(typeof(ListDb), db);
+                }
+            }
+            else
+            {
+                var result = await this.dialog.ShowAsync();
             }
         }
     }
