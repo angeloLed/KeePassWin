@@ -5,13 +5,20 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
+            
             <Style x:Key="ListCaptionAltTextblockStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
             </Style>
+            
             <Style x:Key="ListBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
                 <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
             </Style>
+
+            <Style x:Key="HomeSplitview" TargetType="StackPanel" >
+                <Setter Property="Background" Value="DarkGreen"/>
+            </Style>
+            
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
