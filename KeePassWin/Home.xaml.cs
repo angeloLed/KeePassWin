@@ -37,6 +37,8 @@ namespace KeePassWin
 
             App.Session = new Session();
 
+            //App.Session.ChooseTheme("Custom1");
+
             App.Session.PropertyChanged += (sender, ev) =>
             {
                 HeadTitlePage.Text = App.Session.CurrentPageTitle;

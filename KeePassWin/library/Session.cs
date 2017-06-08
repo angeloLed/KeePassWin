@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace KeePassWin
 {
@@ -31,6 +32,16 @@ namespace KeePassWin
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public void ChooseTheme(string filename)
+        {
+            ResourceDictionary rd = new ResourceDictionary
+                {
+                    Source = new Uri("ms-appx:///Styles/"+ filename + ".xaml", UriKind.Absolute)
+                };
+
+            Application.Current.Resources = rd;
         }
     }
 }

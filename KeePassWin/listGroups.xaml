@@ -18,15 +18,6 @@
                         <MenuFlyoutItem Click="DeleteGroup_Click" x:Name="DeleteButton" Text="Delete"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <!--
-                <StackPanel Margin="5,5,5,5">
-                    <RelativePanel>
-                        <TextBlock MinWidth="30" Name="icon" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind Icon}" FontFamily="Segoe MDL2 Assets" Foreground="Gray"></TextBlock>
-                        <TextBlock Name="name" RelativePanel.RightOf="icon" FontSize="16" HorizontalAlignment="Left" Text="{x:Bind Name}" ></TextBlock>
-                        <TextBlock RelativePanel.RightOf="icon" RelativePanel.Below="name" FontSize="12" HorizontalAlignment="Left" Text="{x:Bind Description}"></TextBlock>
-                    </RelativePanel>
-                </StackPanel>
-                -->
 
                 <Grid Margin="0,11,0,13">
                     <Grid.RowDefinitions>
