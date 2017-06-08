@@ -18,7 +18,7 @@
         <StackPanel  Height="35" Style="{ThemeResource HomeHeaderBar}" Orientation="Horizontal">
             <Button x:Name="buttonSpitter1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="35" Grid.Row="0" Background="Transparent"  Click="buttonSpitter_Click" />
             <Border BorderBrush="{x:Null}" Height="35">
-                <TextBlock x:Name="HeadTitlePage" Foreground="Black"  TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Text="Menu" FontSize="22" />
+                <TextBlock x:Name="HeadTitlePage" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Text="Menu" FontSize="22" />
             </Border>
         </StackPanel>
 
@@ -37,8 +37,8 @@
                     <Button x:Name="buttonGroupes" Click="buttonGroupes_Click" Padding="0" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEC26;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center" />
-                                <TextBlock Text="Groupes" FontSize="18" VerticalAlignment="Center" />
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}" FontFamily="Segoe MDL2 Assets" Text="&#xEC26;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}" Text="Groupes" FontSize="18" VerticalAlignment="Center" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -46,8 +46,8 @@
                     <Button x:Name="buttonDbEdit" Click="buttonDbEdit_Click" Padding="0" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock  FontFamily="Segoe MDL2 Assets" Text="&#xE1C2;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center"  />
-                                <TextBlock Text="Edit DB" FontSize="18" VerticalAlignment="Center" />
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}" FontFamily="Segoe MDL2 Assets" Text="&#xE1C2;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center"  />
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}" Text="Edit DB" FontSize="18" VerticalAlignment="Center" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -55,8 +55,8 @@
                     <Button Click="buttonDbSave_Click" x:Name="buttonDbSave" Padding="0" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="DbSaveIcon" FontFamily="Segoe MDL2 Assets" Text="&#xE105;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center" />
-                                <TextBlock x:Name="DbSaveText" Text="Save DB" FontSize="18" VerticalAlignment="Center" />
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}"  x:Name="DbSaveIcon" FontFamily="Segoe MDL2 Assets" Text="&#xE105;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}"  x:Name="DbSaveText" Text="Save DB" FontSize="18" VerticalAlignment="Center" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -64,8 +64,8 @@
                     <Button x:Name="buttomDbList" Click="buttomDbList_Click" Padding="0" Background="Transparent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEE94;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Text="List DB" FontSize="18" VerticalAlignment="Center" />
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}"  FontFamily="Segoe MDL2 Assets" Text="&#xEE94;" FontSize="20" Padding="15" Width="50" Height="50" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Style="{ThemeResource HomeSplitviewTextblock}"  Text="List DB" FontSize="18" VerticalAlignment="Center" />
                             </StackPanel>
                         </Button.Content>
                     </Button>

@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:KeePassWin"
-    RequestedTheme="Light">
+    RequestedTheme="Dark">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -18,6 +18,22 @@
                     <Style x:Key="ListBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
                         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
                     </Style>
+                    <Style x:Key="HomeSplitview" TargetType="StackPanel" >
+                        <Setter Property="Background" Value="DarkGray"/>
+                    </Style>
+                    <Style x:Key="HomeSplitviewTextblock" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}" >
+                    </Style>
+                    <Style x:Key="HomeSplitviewTextblockAlert" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}" >
+                        <Setter Property="Foreground" Value="Red" />
+                    </Style>
+
+                    <Style x:Key="HomeHeaderBar" TargetType="StackPanel" >
+                        <Setter Property="Background" Value="DarkGray"/>
+                    </Style>
+
+                    <Style x:Key="DefaultButton" TargetType="Button" >
+                    </Style>
+
                 </ResourceDictionary>
 
 
@@ -31,12 +47,24 @@
                     <Style x:Key="ListBodyTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
                         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
                     </Style>
+                    
                     <Style x:Key="HomeSplitview" TargetType="StackPanel" >
                         <Setter Property="Background" Value="Orange"/>
                     </Style>
+                    <Style x:Key="HomeSplitviewTextblock" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}" >
+                    </Style>
+                    <Style x:Key="HomeSplitviewTextblockAlert" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}" >
+                        <Setter Property="Foreground" Value="DarkRed" />
+                    </Style>
+                    
                     <Style x:Key="HomeHeaderBar" TargetType="StackPanel" >
                         <Setter Property="Background" Value="Orange"/>
                     </Style>
+
+                    <Style x:Key="DefaultButton" TargetType="Button"  >
+                        <Setter Property="Background" Value="Orange" />
+                    </Style>
+
                 </ResourceDictionary>
 
 

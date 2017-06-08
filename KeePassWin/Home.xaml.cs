@@ -47,8 +47,8 @@ namespace KeePassWin
             App.CurrentDb.PropertyChanged += (sender, ev) =>
             {
                 App.Session.PengingSave = true;
-                DbSaveIcon.Foreground = new SolidColorBrush(Colors.Red);
-                DbSaveText.Foreground = new SolidColorBrush(Colors.Red);
+                DbSaveIcon.Style = Application.Current.Resources["HomeSplitviewTextblockAlert"] as Style;
+                DbSaveText.Style = Application.Current.Resources["HomeSplitviewTextblockAlert"] as Style;
             };
 
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
@@ -101,8 +101,8 @@ namespace KeePassWin
             splitView.IsPaneOpen = false;
 
 
-            DbSaveIcon.Foreground = new SolidColorBrush(Colors.Black);
-            DbSaveText.Foreground = new SolidColorBrush(Colors.Black);
+            DbSaveIcon.Style = Application.Current.Resources["HomeSplitviewTextblock"] as Style;
+            DbSaveText.Style = Application.Current.Resources["HomeSplitviewTextblock"] as Style;
         }
 
         private void buttonDbEdit_Click(object sender, RoutedEventArgs e)

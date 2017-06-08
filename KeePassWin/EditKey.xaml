@@ -26,7 +26,7 @@
                 <TextBox Header="Created At" Width="200" IsReadOnly="True" x:Name="createdAt" Margin="5" RelativePanel.Below="iconSelect"  BorderThickness="0"  Foreground="Gray"/>
                 <TextBox Header="Update At" Width="200" IsReadOnly="True" x:Name="updateAt" Margin="5" RelativePanel.Below="createdAt"  BorderThickness="0"  Foreground="Gray"/>
 
-                <Button x:Name="buttonSave" Width="200" Margin="5" Background="Orange" Content="Save" RelativePanel.Below="updateAt" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
+                <Button Style="{ThemeResource DefaultButton}" x:Name="buttonSave" Width="200" Margin="5" Content="Save" RelativePanel.Below="updateAt" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="buttonSave_Click"/>
             </RelativePanel>
         </ScrollViewer>
       
