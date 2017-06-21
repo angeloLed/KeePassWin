@@ -34,7 +34,9 @@ namespace KeePassWin
         {
             base.OnNavigatedTo(e);
 
+            laberHeader.Text = "New Db";
             if (App.CurrentDb != null) {
+                laberHeader.Text = "Edit Db";
                 db = App.CurrentDb;
                 title.Text = db.Title;
                 password.Password = db.Password;

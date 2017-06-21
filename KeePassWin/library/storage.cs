@@ -37,11 +37,18 @@ namespace KeePassWin
 
         public static async void saveFile(string path, string content)
         {
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            StorageFile file = await storageFolder.CreateFileAsync(mergeExtension(path), CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, content);
+            try
+            {
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFile file = await storageFolder.CreateFileAsync(mergeExtension(path), CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(file, content);
 
-            FileSavedEvent?.Invoke(file);
+                FileSavedEvent?.Invoke(file);
+            }
+            catch (Exception ex)
+            {
+                //TODO: trapping better
+            }
         }
 
         public static async Task<IReadOnlyList<StorageFile>> getFiles()
