@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Windows.Data.Json;
 
 namespace KeePassWin
 {
@@ -152,6 +153,32 @@ namespace KeePassWin
         //contructor
         public GroupKeys()
         {
+            this.init();
+        }
+
+        public GroupKeys(JsonObject joG)
+        {
+            this.init();
+
+            this.Description = joG.GetNamedString("Description", "");
+            this.Icon = joG.GetNamedString("Icon", "");
+            this.Name = joG.GetNamedString("Name", "");
+            this.Note = joG.GetNamedString("Note", "");
+            this.CreateAt = joG.GetNamedString("CreateAt", "");
+            this.UpdateAt = joG.GetNamedString("UpdateAt", "");
+
+            foreach (IJsonValue jsonValueK in joG.GetNamedArray("Keys", new JsonArray()))
+            {
+                if (jsonValueK.ValueType == JsonValueType.Object)
+                {
+                    JsonObject joK = jsonValueK.GetObject();
+                    this.Keys.Add(new Key(joK));
+                }
+            }
+        }
+
+        private void init()
+        {
             if (this.keys == null)
             {
                 this.keys = new ObservableCollection<Key>();
@@ -161,6 +188,23 @@ namespace KeePassWin
             this.keys.CollectionChanged += K_CollectionChanged;
         }
 
+        public JsonObject ToJsonObject()
+        {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject["Description"] = JsonValue.CreateStringValue(this.Description);
+            jsonObject["Icon"] = JsonValue.CreateStringValue(this.Icon);
+            jsonObject["Name"] = JsonValue.CreateStringValue(this.Name);
+            jsonObject["Note"] = JsonValue.CreateStringValue(this.Note);
+            jsonObject["CreateAt"] = JsonValue.CreateStringValue(this.CreateAt);
+            jsonObject["UpdateAt"] = JsonValue.CreateStringValue(this.UpdateAt);
+            JsonArray jsonKeys = new JsonArray();
+            foreach (Key kTemp in this.Keys)
+            {
+                jsonKeys.Add(kTemp.ToJsonObject());
+            }
+            jsonObject["Keys"] = jsonKeys;
 
+            return jsonObject;
+        }
     }
 }

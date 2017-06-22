@@ -1,12 +1,34 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Windows.Data.Json;
 
 namespace KeePassWin
 {
     [Serializable]
     public class Key
     {
+        #region CONTRUCTORS
+
+        public Key()
+        {
+        }
+
+        public Key(JsonObject joK)
+        {
+            this.CreateAt = joK.GetNamedString("CreateAt", "");
+            this.Icon = joK.GetNamedString("Icon", "");
+            this.Note = joK.GetNamedString("Note", "");
+            this.Password = joK.GetNamedString("Password", "");
+            this.Title = joK.GetNamedString("Title", "");
+            this.UpdateAt = joK.GetNamedString("UpdateAt", "");
+            this.Url = joK.GetNamedString("Url", "");
+            this.Username = joK.GetNamedString("Username", "");
+        }
+
+        #endregion
+
+
         #region Properties
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -118,5 +140,20 @@ namespace KeePassWin
             }
         }
         #endregion
+
+        public JsonObject ToJsonObject()
+        {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject["Url"] = JsonValue.CreateStringValue(this.Url);
+            jsonObject["Username"] = JsonValue.CreateStringValue(this.Username);
+            jsonObject["Password"] = JsonValue.CreateStringValue(this.Password);
+            jsonObject["Icon"] = JsonValue.CreateStringValue(this.Icon);
+            jsonObject["Title"] = JsonValue.CreateStringValue(this.Title);
+            jsonObject["Note"] = JsonValue.CreateStringValue(this.Note);
+            jsonObject["CreateAt"] = JsonValue.CreateStringValue(this.CreateAt);
+            jsonObject["UpdateAt"] = JsonValue.CreateStringValue(this.UpdateAt);
+
+            return jsonObject;
+        }
     }
 }
