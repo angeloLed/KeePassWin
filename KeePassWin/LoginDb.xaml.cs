@@ -38,7 +38,7 @@ namespace KeePassWin
             this.bodyFile = await Storage.getContentFile(parameters["filename"]);
         }
 
-        private async void loginButton_Click(object sender, RoutedEventArgs e)
+        private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             performLogin();
         }
@@ -69,7 +69,10 @@ namespace KeePassWin
             if (!String.IsNullOrEmpty(decryptedBody))
             {
 
+                //OLD (json.net)
                 //Db db = Db.GetFromJson(decryptedBody);
+
+                //new
                 App.CurrentDb = new Db(decryptedBody);
                 this.Frame.Navigate(typeof(Home));
             }
