@@ -109,16 +109,22 @@ namespace KeePassWin
                 AppViewBackButtonVisibility.Collapsed;
         }
 
-        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        private async void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            /*
-            Frame rootFrame = Window.Current.Content as Frame;
+            e.Handled = true;
 
-            if (rootFrame.CanGoBack)
+            Frame navFrame = Window.Current.Content as Frame;
+
+            if (navFrame.CurrentSourcePageType == typeof(Home))
             {
-                e.Handled = true;
-                rootFrame.GoBack();
-            }*/
+                Home page = navFrame.Content as Home;
+                page.OnBackRequested(sender, e);
+            }
+            else if (navFrame.CurrentSourcePageType == typeof(ListDb))
+            {
+                ListDb page = navFrame.Content as ListDb;
+                page.OnBackRequested(sender, e);
+            }
         }
 
         public static bool IsConnected()

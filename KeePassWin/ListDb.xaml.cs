@@ -43,7 +43,7 @@ namespace KeePassWin
             }
             listDbGrid.Items.Add("+");
 
-            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+            //SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
             
             //inizialize dialog
             dialog = new Windows.UI.Popups.MessageDialog(
@@ -75,7 +75,7 @@ namespace KeePassWin
             }
         }
 
-        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        public void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
             e.Handled = true;
             Application.Current.Exit();

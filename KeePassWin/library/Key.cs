@@ -5,7 +5,6 @@ using Windows.Data.Json;
 
 namespace KeePassWin
 {
-    [Serializable]
     public class Key
     {
         #region CONTRUCTORS

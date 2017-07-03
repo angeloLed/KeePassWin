@@ -8,7 +8,6 @@ using Windows.Data.Json;
 
 namespace KeePassWin
 {
-    [Serializable]
     public class GroupKeys : INotifyPropertyChanged
     {
         #region Properties

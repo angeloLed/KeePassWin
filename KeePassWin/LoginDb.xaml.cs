@@ -94,7 +94,7 @@ namespace KeePassWin
                 }
             }
             catch (Exception ex) {
-                Console.WriteLine("error on keydown event: "+ ex.Message);
+             //   Console.WriteLine("error on keydown event: "+ ex.Message);
             }
         }
     }

@@ -51,7 +51,7 @@ namespace KeePassWin
                 DbSaveText.Style = Application.Current.Resources["HomeSplitviewTextblockAlert"] as Style;
             };
 
-            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+            //SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
             if (App.IsMobile)
             {
@@ -142,7 +142,7 @@ namespace KeePassWin
             }
         }
 
-        private async void OnBackRequested(object sender, BackRequestedEventArgs e)
+        public async void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
             Frame splitviewFrame = ((Frame)splitView.Content);
             e.Handled = true;

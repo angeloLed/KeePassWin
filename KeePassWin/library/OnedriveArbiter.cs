@@ -2,6 +2,7 @@
 using Microsoft.OneDrive.Sdk.Authentication;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -162,7 +163,12 @@ namespace KeePassWin
         private async void updateFile(StorageFile file)
         {
             if (this.IsConnected()) {
-                await this.updateDb(file);
+                try {
+                    await this.updateDb(file);
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine("Error on update file to onedrive :" + ex.Message);
+                }          
             }
         }
 

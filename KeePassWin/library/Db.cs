@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,7 +12,6 @@ using Windows.Data.Json;
 
 namespace KeePassWin
 {
-    [Serializable]
     public class Db
     {
         #region Properties
@@ -142,8 +142,15 @@ namespace KeePassWin
 
             //NEW
             string body = this.ToJson();
+            try
+            {
+                Storage.saveFile(this.FileName, Crypto.Encrypt(body, this.Password));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error during process to save db into local storage : " + ex.Message);
 
-            Storage.saveFile(this.FileName, Crypto.Encrypt(body, this.Password));
+            }
         }
 
         public static Db GetFromJson(string json)

@@ -1,0 +1,3 @@
+﻿This Privacy Policy covers your use of this application. This app does not collect, store, or share any personal information, or anything related to your device or your OneDrive account. We do not collect any statistics, trends, neither do we track user movements.
+
+Saving data to a KeeSync file will persist that data and synced with your OneDrive account, according to the security (password and/or key) that you have supplied.
